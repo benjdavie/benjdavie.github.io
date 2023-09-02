@@ -1,93 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AUXO.</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-      background-color: white; /* Inverted color: white */
-      color: black; /* Inverted color: black */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUXILIARY</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: yellow;
+            background-image: url('corn-eating.gif'); /* Replace 'corn-eating.gif' with your GIF file */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 44px;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            opacity: 0;
+            animation: fade-in-aux 2s ease-in-out 3s forwards;
+            cursor: pointer;
+        }
+        #countdown {
+            font-family: 'Arial', sans-serif;
+            font-size: 96px; /* Increased font size for countdown */
+            color: black;
+            font-weight: bold;
+            text-align: left; /* Align left */
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fade-in-timer 2s ease-in-out forwards;
+        }
+        #slcdnb {
+            font-family: 'Arial', sans-serif;
+            font-size: 12px;
+            color: #333;
+            opacity: 0;
+            animation: fade-in-slcdnb 2s ease-in-out 5s forwards;
+        }
 
-    pre {
-      font-size: 16px;
-      margin-bottom: 20px;
-      animation: rainbow 5s linear infinite;
-      color: black; /* Inverted color: black */
-    }
+        /* CSS animations for fading in */
+        @keyframes fade-in-timer {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes fade-in-aux {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes fade-in-slcdnb {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
-    @keyframes rainbow {
-      0% { color: red; }
-      14% { color: orange; }
-      28% { color: yellow; }
-      42% { color: green; }
-      57% { color: blue; }
-      71% { color: indigo; }
-      85% { color: violet; }
-      100% { color: red; }
-    }
+        /* Flash on hover with a faster animation */
+        h1:hover {
+            animation: flash-super-fast 0.1s infinite alternate;
+        }
 
-    ul {
-      padding: 0;
-      list-style: none;
-      margin-top: 10px;
-    }
+        @keyframes flash-super-fast {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
 
-    li {
-      margin-bottom: 10px;
-    }
-
-    a {
-      font-size: 40px;
-      color: black; /* Inverted color: black */
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    a:hover {
-      animation: strobe 0.1s infinite;
-    }
-
-    @keyframes strobe {
-      0% { color: black; } /* Inverted color: black */
-      50% { color: white; } /* Inverted color: white */
-      100% { color: black; } /* Inverted color: black */
-    }
-    
-    .footer {
-      font-size: 12px;
-      margin-top: 20px;
-    }
-  </style>
+        /* Mobile-friendly adjustments */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 24px; /* Adjust font size for smaller screens */
+            }
+            #countdown {
+                font-size: 72px; /* Adjust font size for smaller screens */
+            }
+            #slcdnb {
+                font-size: 10px; /* Adjust font size for smaller screens */
+            }
+        }
+    </style>
 </head>
 <body>
-  <pre>
-           :::       :::    :::       :::    :::       ::::::::          
-       :+: :+:     :+:    :+:       :+:    :+:      :+:    :+:          
-     +:+   +:+    +:+    +:+        +:+  +:+       +:+    +:+           
-   +#++:++#++:   +#+    +:+         +#++:+        +#+    +:+            
-  +#+     +#+   +#+    +#+        +#+  +#+       +#+    +#+             
- #+#     #+#   #+#    #+#       #+#    #+#      #+#    #+#      #+#     
-###     ###    ########        ###    ###       ########       ###      
-  </pre>
-  
-  <ul>
-    <li><a href="https://songwhip.com/auxo/auxo">STREAM AUXO</a></li>
-    <li><a href="showdates.html">SHOW DATES</a></li>
-    <li><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
-    <li><a href="mailto:auxodnb@gmail.com">BOOKING</a></li>
-  </ul>
-  
-  <div class="footer">
-    AUXO RECORDS INC
-  </div>
+    <div id="countdown"></div>
+    <h1 onclick="window.location.href='https://www.instagram.com/reel/CqLxB-qA_AG/'">AUXILIARY</h1>
+    <div id="slcdnb">SLCDNB®</div>
+
+    <script>
+        // Set the date we're counting down to
+        const countDownDate = new Date("September 21, 2023 23:59:00").getTime();
+
+        // Update the countdown every millisecond (1/1000 of a second)
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            // Calculate days, hours, minutes, seconds, and milliseconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const milliseconds = Math.floor(distance % 1000);
+
+            // Display the countdown in the format: days.hours.minutes.seconds.milliseconds
+            document.getElementById("countdown").innerHTML = `${days}.${hours}.${minutes}.${seconds}.${milliseconds}`;
+
+            // If the countdown is over, display a message
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1); // Update every millisecond (1/1000 second)
+    </script>
 </body>
 </html>
