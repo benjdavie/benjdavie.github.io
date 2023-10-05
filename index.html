@@ -4,85 +4,109 @@
   <title>AUXO - Rainbow Strobe</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-      background-color: white;
-      animation: rainbow-background 5s linear infinite;
-    }
+   body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: white;
+  animation: rainbow-background 0.1s linear infinite; /* Decreased duration to 0.1 seconds */
+}
 
-    @keyframes rainbow-background {
-      0% { background-color: red; }
-      14% { background-color: orange; }
-      28% { background-color: yellow; }
-      42% { background-color: green; }
-      57% { background-color: blue; }
-      71% { background-color: indigo; }
-      85% { background-color: violet; }
-      100% { background-color: red; }
-    }
+@keyframes rainbow-background {
+  0% { background-color: black; }
+  14% { background-color: orange; }
+  28% { background-color: yellow; }
+  42% { background-color: green; }
+  57% { background-color: blue; }
+  71% { background-color: indigo; }
+  85% { background-color: violet; }
+  100% { background-color: red; }
+}
 
-    pre {
-      font-size: 16px;
-      margin-bottom: 20px;
-      animation: rainbow 5s linear infinite;
-      color: black;
-    }
+/* ... rest of your CSS code ... */
 
-    @keyframes rainbow {
-      0% { color: red; }
-      14% { color: orange; }
-      28% { color: yellow; }
-      42% { color: green; }
-      57% { color: blue; }
-      71% { color: indigo; }
-      85% { color: violet; }
-      100% { color: red; }
-    }
+ul {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
 
-    ul {
-      padding: 0;
-      list-style: none;
-      margin-top: 10px;
-    }
+li {
+  margin-bottom: 10px;
+}
 
-    li {
-      margin-bottom: 10px;
-    }
+a {
+  font-size: 40px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
 
-    a {
-      font-size: 40px;
-      color: black;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+a:hover {
+  animation: strobe 0.05s infinite; /* Decreased duration to 0.05 seconds */
+}
 
-    a:hover {
-      animation: strobe 0.1s infinite;
-    }
+@keyframes strobe {
+  0% { color: white; }
+  50% { color: black; }
+  100% { color: white; }
+}
+
+/* ... rest of your CSS code ... */
+
+   /* ... rest of your CSS code ... */
+
+ul {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  font-size: 40px;
+  color: white; /* Set link color to white */
+  text-decoration: none;
+  font-weight: bold; /* Make the text bold */
+  transition: color 0.3s;
+}
+
+a:hover {
+  animation: strobe 0.1s infinite;
+}
+
+/* ... rest of your CSS code ... */
+
 
     @keyframes strobe {
       0% { color: black; }
       50% { color: white; }
       100% { color: black; }
     }
-    
-    .footer {
-      font-size: 12px;
-      margin-top: 20px;
-    }
+ .footer {
+  font-size: 12px;
+  margin-top: 20px;
+  color: white; /* Set the text color to white */
+}
+
+In this code, the .footer class has been updated to set the text color to white, making the "SLCDNB RECORDS INC" text appear in white color.
+
   </style>
 </head>
 <body>
 
+
   <ul>
-    <li><a href="https://songwhip.com/auxo/auxiliary">LISTEN TO AUXO</a></li>
+    <li><a href="https://ffm.to/auxiliary-">LISTEN TO AUXO</a></li>
     <li><a href="showdates.html">SHOW DATES</a></li>
     <li><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
     <li><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
