@@ -4,7 +4,7 @@
   <title>AUXO</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-   body {
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,12 +13,12 @@
   margin: 0;
   padding: 20px;
   text-align: center;
-  background-color: yellow; /* Set the background color to yellow */
+  background-color: yellow;
   animation: rainbow-background 0.1s linear infinite;
 }
 
 @keyframes rainbow-background {
-  0% { background-color: yellow; } /* Set the initial background color to yellow */
+  0% { background-color: yellow; }
   14% { background-color: yellow; }
   28% { background-color: yellow; }
   42% { background-color: yellow; }
@@ -28,11 +28,6 @@
   100% { background-color: yellow; }
 }
 
-/* ... rest of your CSS code ... */
-
-
-/* ... rest of your CSS code ... */
-
 ul {
   padding: 0;
   list-style: none;
@@ -45,41 +40,9 @@ li {
 
 a {
   font-size: 40px;
-  color: white;
+  color: black; /* Set text color to black */
   text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
-}
-
-a:hover {
-  animation: strobe 0.05s infinite; /* Decreased duration to 0.05 seconds */
-}
-
-@keyframes strobe {
-  0% { color: white; }
-  50% { color: black; }
-  100% { color: white; }
-}
-
-/* ... rest of your CSS code ... */
-
-   /* ... rest of your CSS code ... */
-
-ul {
-  padding: 0;
-  list-style: none;
-  margin-top: 10px;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-a {
-  font-size: 40px;
-  color: white; /* Set link color to white */
-  text-decoration: none;
-  font-weight: bold; /* Make the text bold */
   transition: color 0.3s;
 }
 
@@ -87,19 +50,18 @@ a:hover {
   animation: strobe 0.1s infinite;
 }
 
-/* ... rest of your CSS code ... */
+@keyframes strobe {
+  0% { color: black; }
+  50% { color: white; }
+  100% { color: black; }
+}
 
-
-    @keyframes strobe {
-      0% { color: black; }
-      50% { color: white; }
-      100% { color: black; }
-    }
- .footer {
+.footer {
   font-size: 12px;
   margin-top: 20px;
-  color: white; /* Set the text color to white */
+  color: black; /* Set text color to black */
 }
+
 
 In this code, the .footer class has been updated to set the text color to white, making the "SLCDNB RECORDS INC" text appear in white color.
 
