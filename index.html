@@ -1,2 +1,80 @@
-index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AUXO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+  background-color: white; /* Set background color to white */
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  margin-bottom: 10px;
+  opacity: 0;
+  animation: fade-in 0.5s forwards; /* Apply fade-in animation */
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+a {
+  font-size: 40px;
+  color: black; /* Set text color to black */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+a:hover {
+  animation: strobe 0.1s infinite;
+}
+
+@keyframes strobe {
+  0% { color: black; }
+  50% { color: white; }
+  100% { color: black; }
+}
+
+.footer {
+  font-size: 12px;
+  margin-top: 20px;
+  color: black; /* Set text color to black */
+  opacity: 0;
+  animation: fade-in 0.4s forwards; /* Apply fade-in animation */
+  animation-delay: 1.3s; /* Add a 0.3s delay to the animation */
+}
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a href="https://ffm.to/auxiliary-">LISTEN TO AUXO</a></li>
+    <li style="animation-delay: 0.3s;"><a href="https://www.instagram.com/benauxo/">INSTAGRAM</a></li>
+    <li style="animation-delay: 0.6s;"><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
+    <li style="animation-delay: 0.9s;"><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
+  </ul>
+
+  <div class="footer">
+    SLCDNB RECORDS INC
+  </div>
+</body>
 </html>
