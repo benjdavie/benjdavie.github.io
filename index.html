@@ -1,80 +1,154 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AUXO</title>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUXO</title>
   <style>
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
-  background-color: white; /* Set background color to white */
-}
+    body {
+      position: relative;
+      height: 100vh;
+      margin: 0;
+      background-color: black; /* Set background color to black */
+      overflow: hidden; /* Hide overflow to prevent scrollbars */
+    }
 
-ul {
-  padding: 0;
-  list-style: none;
-  margin-top: 10px;
-}
+    .content {
+      position: relative;
+      z-index: 2; /* Ensure content is above canvas */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+    }
 
-li {
-  margin-bottom: 10px;
-  opacity: 0;
-  animation: fade-in 0.5s forwards; /* Apply fade-in animation */
-}
+    ul {
+      padding: 0;
+      list-style: none;
+      margin-top: 10px;
+    }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+    li {
+      margin-bottom: 10px;
+      opacity: 0;
+      animation: fade-in 0.5s forwards; /* Apply fade-in animation */
+    }
 
-a {
-  font-size: 40px;
-  color: black; /* Set text color to black */
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s;
-}
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
 
-a:hover {
-  animation: strobe 0.1s infinite;
-}
+    a {
+      font-size: 40px;
+      color: white; /* Set text color to white */
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+      z-index: 2; /* Ensure links are above canvas */
+    }
 
-@keyframes strobe {
-  0% { color: black; }
-  50% { color: white; }
-  100% { color: black; }
-}
+    a:hover {
+      animation: strobe 0.1s infinite;
+    }
 
-.footer {
-  font-size: 12px;
-  margin-top: 20px;
-  color: black; /* Set text color to black */
-  opacity: 0;
-  animation: fade-in 0.4s forwards; /* Apply fade-in animation */
-  animation-delay: 1.3s; /* Add a 0.3s delay to the animation */
-}
+    @keyframes strobe {
+      0% { color: white; }
+      50% { color: black; }
+      100% { color: white; }
+    }
+
+    .footer {
+      font-size: 12px;
+      margin-top: 20px;
+      color: white; /* Set text color to white */
+      opacity: 0;
+      animation: fade-in 0.4s forwards; /* Apply fade-in animation */
+      animation-delay: 1.3s; /* Add a 0.3s delay to the animation */
+      z-index: 2; /* Ensure footer is above canvas */
+    }
+
+    #snow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none; /* Allow interactions with elements behind */
+      z-index: 1; /* Ensure canvas is behind content */
+    }
   </style>
 </head>
 <body>
-  <ul>
-    <li><a href="https://ffm.to/auxiliary-">LISTEN TO AUXO</a></li>
-    <li style="animation-delay: 0.3s;"><a href="https://www.instagram.com/benauxo/">INSTAGRAM</a></li>
-    <li style="animation-delay: 0.6s;"><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
-    <li style="animation-delay: 0.9s;"><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
-  </ul>
+  <div class="content">
+    <ul>
+      <li><a href="https://ffm.to/auxiliary-">LISTEN TO AUXO</a></li>
+      <li style="animation-delay: 0.3s;"><a href="https://www.instagram.com/benauxo/">INSTAGRAM</a></li>
+      <li style="animation-delay: 0.6s;"><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
+      <li style="animation-delay: 0.9s;"><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
+    </ul>
 
-  <div class="footer">
-    SLCDNB RECORDS INC
+    <div class="footer">
+      SLCDNB RECORDS INC
+    </div>
   </div>
+
+  <div id="snow-container"></div>
+
+  <script>
+    // Paste your p5.js code here
+    let snowflakes = [];
+
+    function setup() {
+      let canvas = createCanvas(window.innerWidth, window.innerHeight);
+      canvas.position(0, 0);
+      canvas.style('z-index', '1');
+      fill(240);
+      noStroke();
+    }
+
+    function draw() {
+      let t = frameCount / 60;
+
+      for (let i = 0; i < random(5); i++) {
+        snowflakes.push(new snowflake());
+      }
+
+      for (let flake of snowflakes) {
+        flake.update(t);
+        flake.display();
+      }
+    }
+
+    function snowflake() {
+      this.posX = 0;
+      this.posY = random(-50, 0);
+      this.initialangle = random(0, 2 * PI);
+      this.size = random(2, 5);
+      this.radius = sqrt(random(pow(width / 2, 2)));
+
+      this.update = function(time) {
+        let w = 0.6;
+        let angle = w * time + this.initialangle;
+        this.posX = width / 2 + this.radius * sin(angle);
+        this.posY += pow(this.size, 0.5);
+
+        if (this.posY > height) {
+          let index = snowflakes.indexOf(this);
+          snowflakes.splice(index, 1);
+        }
+      };
+
+      this.display = function() {
+        ellipse(this.posX, this.posY, this.size);
+      };
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </body>
 </html>
