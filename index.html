@@ -9,7 +9,8 @@
       position: relative;
       height: 100vh;
       margin: 0;
-      background-color: black; /* Set background color to black */
+      background: url('water.gif') no-repeat center center fixed; /* Set the GIF as the background */
+      background-size: cover; /* Ensure the background covers the entire screen */
       overflow: hidden; /* Hide overflow to prevent scrollbars */
     }
 
@@ -109,7 +110,7 @@
       let canvas = createCanvas(window.innerWidth, window.innerHeight);
       canvas.position(0, 0);
       canvas.style('z-index', '1');
-      fill(240);
+      fill('red'); // Set snowflake color to red
       noStroke();
     }
 
