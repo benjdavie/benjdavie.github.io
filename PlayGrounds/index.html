@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Square Images with Sound</title>
+    <style>
+        /* Styling for the body with background image */
+        body {
+            display: flex;
+            justify-content: flex-start; /* Align container to the left */
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding-left: 200px; /* Optional padding for spacing */
+            background-image: url('lab.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            position: relative; /* For positioning the tooltip */
+        }
+
+        /* Blurred overlay to cover background image */
+        .blur-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px); /* Adjust the blur amount */
+            z-index: -1; /* Keep it behind the content */
+        }
+
+        /* Container to hold the images and tooltips */
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px; /* Space between image-text pairs */
+        }
+
+        /* Image-text pair container */
+        .image-text-pair {
+            display: flex; /* Use flexbox for alignment */
+            align-items: center; /* Align vertically */
+        }
+
+        /* Image styling to ensure square format */
+        .image-text-pair img {
+            width: 250px; /* Increased width for larger images */
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 8px solid white; /* Thicker white outline */
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s; /* Smooth scaling effect */
+        }
+
+        /* Optional: Scale up on hover for a nice effect */
+        .image-text-pair img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Tooltip styling */
+        .tooltip {
+            display: none; /* Initially hidden */
+            opacity: 0; /* Initially invisible */
+            background-color: rgba(255, 255, 255, 0.7); /* More transparent background */
+            border: none; /* Removed black borders */
+            border-radius: 0; /* Square corners */
+            padding: 20px; /* Increased padding for a more spacious feel */
+            margin-left: 10px; /* Space between image and tooltip */
+            width: 300px; /* Increased width for better text fit */
+            z-index: 1;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Drop shadow for depth */
+            transition: opacity 0.5s ease, transform 0.3s ease; /* Fade and scale effect */
+            font-size: 16px; /* Larger font size for better readability */
+            color: #000; /* Dark text color for contrast */
+            transform: translateY(-10px); /* Initial upward position */
+        }
+
+        /* Show the tooltip on image hover */
+        .image-text-pair:hover .tooltip {
+            display: block; /* Show on hover */
+            opacity: 1; /* Fade in */
+            transform: translateY(0); /* Move into place */
+            animation: fadeIn 0.5s ease forwards; /* Animation on entry */
+        }
+
+        /* Keyframes for the fade-in animation */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="blur-overlay"></div>
+
+<div class="image-container">
+    <div class="image-text-pair">
+        <img src="top.jpg" alt="Top Image" 
+             onmouseover="playSound('sound1')" 
+             onmouseout="stopSound('sound1')">
+        <div class="tooltip">
+            <strong>Top Image: Designer’s Dilemma</strong><br>
+            The designer dreamed of a stunning glass helmet that would look incredible but quickly ran into problems. Glass is gorgeous but fragile, making it a tough choice.
+        </div>
+    </div>
+    
+    <div class="image-text-pair">
+        <img src="middle.jpg" alt="Middle Image" 
+             onmouseover="playSound('sound2')" 
+             onmouseout="stopSound('sound2')">
+        <div class="tooltip">
+            <strong>Middle Image: Style vs. Safety</strong><br>
+            They were torn between creating something eye-catching and ensuring it actually provides safety. A balancing act between aesthetics and functionality.
+        </div>
+    </div>
+
+    <div class="image-text-pair">
+        <img src="bottom.jpg" alt="Bottom Image" 
+             onmouseover="playSound('sound3')" 
+             onmouseout="stopSound('sound3')">
+        <div class="tooltip">
+            <strong>Bottom Image: The Final Decision</strong><br>
+            In the end, they had to decide what mattered more: style or safety. The challenge of the designer's dilemma lives on.
+        </div>
+    </div>
+</div>
+
+<!-- Sound files for each image -->
+<audio id="sound1" src="sound1.mp3"></audio>
+<audio id="sound2" src="sound2.mp3"></audio>
+<audio id="sound3" src="sound3.mp3"></audio>
+
+<!-- Background music -->
+<audio id="backgroundTrack" src="background.mp3" autoplay loop></audio>
+
+<script>
+    // Function to play sound based on image hover
+    function playSound(soundId) {
+        const sound = document.getElementById(soundId);
+        if (sound) {
+            sound.currentTime = 0; // Rewind the sound to start
+            sound.play();
+        }
+    }
+
+    // Function to stop sound when not hovering
+    function stopSound(soundId) {
+        const sound = document.getElementById(soundId);
+        if (sound) {
+            sound.pause(); // Pause the sound
+            sound.currentTime = 0; // Reset to start
+        }
+    }
+</script>
+
+</body>
+</html>
