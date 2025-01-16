@@ -9,14 +9,14 @@
       position: relative;
       height: 100vh;
       margin: 0;
-      background: url('water.gif') no-repeat center center fixed; /* Set the GIF as the background */
-      background-size: cover; /* Ensure the background covers the entire screen */
-      overflow: hidden; /* Hide overflow to prevent scrollbars */
+      background: url('water.gif') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
     }
 
     .content {
       position: relative;
-      z-index: 2; /* Ensure content is above canvas */
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -35,7 +35,7 @@
     li {
       margin-bottom: 10px;
       opacity: 0;
-      animation: fade-in 0.5s forwards; /* Apply fade-in animation */
+      animation: fade-in 0.5s forwards;
     }
 
     @keyframes fade-in {
@@ -49,16 +49,11 @@
 
     a {
       font-size: 40px;
-      color: white; /* Set text color to white */
+      color: white;
       text-decoration: none;
       font-weight: bold;
       transition: color 0.3s;
-      z-index: 2; /* Ensure links are above canvas */
-      text-shadow: 
-        -1px -1px 0 #000,  
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000; /* Creates a black outline around the text */
+      z-index: 2;
     }
 
     a:hover {
@@ -74,24 +69,31 @@
     .footer {
       font-size: 12px;
       margin-top: 20px;
-      color: white; /* Set text color to white */
+      color: white;
       opacity: 0;
-      animation: fade-in 0.4s forwards; /* Apply fade-in animation */
-      animation-delay: 1.3s; /* Add a 0.3s delay to the animation */
-      z-index: 2; /* Ensure footer is above canvas */
-      text-shadow: 
-        -1px -1px 0 #000,  
-         1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000; /* Creates a black outline around the footer text */
+      animation: fade-in 0.4s forwards;
+      animation-delay: 1.3s;
+      z-index: 2;
     }
 
     #snow-container {
       position: fixed;
       top: 0;
       left: 0;
-      pointer-events: none; /* Allow interactions with elements behind */
-      z-index: 1; /* Ensure canvas is behind content */
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .music-editing-link {
+      margin-top: 20px;
+      color: white;
+      font-size: 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .music-editing-link:hover {
+      color: yellow;
     }
   </style>
 </head>
@@ -101,28 +103,28 @@
       <li><a href="https://ffm.to/circa">LISTEN TO CIRCA</a></li> 
       <li style="animation-delay: 0.3s;"><a href="https://www.instagram.com/benauxo/">INSTAGRAM</a></li>
       <li style="animation-delay: 0.6s;"><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
-       <li style="animation-delay: 0.75s;"><a href="https://soundcloud.com/benauxo">SOUNDCLOUD</a></li>
+      <li style="animation-delay: 0.75s;"><a href="https://soundcloud.com/benauxo">SOUNDCLOUD</a></li>
       <li style="animation-delay: 0.9s;"><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
     </ul>
 
     <div class="footer">
       SLCDNB RECORDS INC
     </div>
+    <a class="music-editing-link" href="music_editing.html">Music Editing</a>
   </div>
 
   <div id="snow-container"></div>
 
-  <audio src="song.mp3" autoplay loop></audio> <!-- Add this line to play the background song -->
+  <audio src="song.mp3" autoplay loop></audio>
 
   <script>
-    // Paste your p5.js code 
     let snowflakes = [];
 
     function setup() {
       let canvas = createCanvas(window.innerWidth, window.innerHeight);
       canvas.position(0, 0);
       canvas.style('z-index', '1');
-      fill('red'); // Set snowflake color to red
+      fill('red');
       noStroke();
     }
 
