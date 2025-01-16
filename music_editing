@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auxo Music Editing Service</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        header {
+            background-color: #007aff;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            color: white;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .contact-info {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007aff;
+            margin: 20px 0;
+        }
+
+        .link-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .link-container a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #34c759;
+            color: white;
+            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+        }
+
+        .link-container a:hover {
+            background-color: #30b357;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Auxo Music Editing Service</h1>
+    </header>
+    <main>
+        <p class="description">Hi! I'm here to help you craft the perfect sound. Whether you're an artist, podcaster, or just need some audio magic, I've got you covered. I can also cut up songs for dance and cheer routines to make them perfect for your performances. Reach out to me today!</p>
+        <div class="contact-info">
+            <p>Call or Text: 435-680-6264</p>
+            <p>Email: auxodnb@gmail.com</p>
+        </div>
+        <div class="link-container">
+            <a href="sms:4356806264">Text Me</a>
+            <a href="mailto:auxodnb@gmail.com">Email Me</a>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Auxo Music Editing Service. All rights reserved.</p>
+    </footer>
+</body>
+</html>
