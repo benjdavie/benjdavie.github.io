@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUICIDE ROCK - 3D Model</title>
+    <style>
+        body {
+            background-color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .sketchfab-embed-wrapper {
+            width: 90vw;
+            height: 80vh;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        p {
+            font-size: 14px;
+            text-align: center;
+            color: #4A4A4A;
+        }
+        a {
+            font-weight: bold;
+            color: #1CAAD9;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sketchfab-embed-wrapper">
+        <iframe title="SUICIDE ROCK" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" src="https://sketchfab.com/models/10f9e278a5144a358ae0807e8794a082/embed"></iframe>
+    </div>
+    <p>
+        <a href="https://sketchfab.com/3d-models/suicide-rock-10f9e278a5144a358ae0807e8794a082" target="_blank" rel="nofollow">SUICIDE ROCK</a> by 
+        <a href="https://sketchfab.com/benjidavie" target="_blank" rel="nofollow">benjidavie</a> on 
+        <a href="https://sketchfab.com" target="_blank" rel="nofollow">Sketchfab</a>
+    </p>
+</body>
+</html>
