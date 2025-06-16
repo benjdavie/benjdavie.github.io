@@ -55,11 +55,11 @@
       height: 50vh;
       width: 100%;
       overflow: hidden;
-      margin-top: 40px; /* offset for marquee */
+      margin-top: 40px;
       cursor: pointer;
     }
 
-    .intro img {
+    .intro video {
       position: absolute;
       top: 0; left: 0;
       width: 100%;
@@ -105,7 +105,7 @@
       transition: 0.3s;
     }
 
-    .section img {
+    .section video {
       position: absolute;
       top: 0; left: 0;
       width: 100%;
@@ -115,7 +115,7 @@
       transition: 0.4s ease-in-out;
     }
 
-    .section:hover img {
+    .section:hover video {
       opacity: 1;
     }
 
@@ -141,9 +141,11 @@
     <div class="marquee-text">BENJAMIN DAVIE DESIGN &nbsp; • &nbsp; BENJAMIN DAVIE DESIGN &nbsp; • &nbsp; BENJAMIN DAVIE DESIGN</div>
   </div>
 
-  <!-- Intro Section (clickable) -->
+  <!-- Intro Section -->
   <div class="intro" onclick="document.getElementById('bottom').scrollIntoView({ behavior: 'smooth' })">
-    <img src="intro.gif" alt="Intro Background" />
+    <video autoplay muted loop playsinline>
+      <source src="intro.mp4" type="video/mp4" />
+    </video>
     <div class="scroll-arrow">↓</div>
   </div>
 
@@ -151,19 +153,27 @@
   <div class="grid">
     <a class="section" href="personal.html">
       <div class="label">Personal</div>
-      <img src="personal.gif" alt="Personal Projects" />
+      <video autoplay muted loop playsinline>
+        <source src="personal.mp4" type="video/mp4" />
+      </video>
     </a>
     <a class="section" href="https://auxo.love/rock" target="_blank">
       <div class="label">Research</div>
-      <img src="research.gif" alt="Research Projects" />
+      <video autoplay muted loop playsinline>
+        <source src="research.mp4" type="video/mp4" />
+      </video>
     </a>
     <a class="section" href="physical.html">
       <div class="label">Physical Pieces</div>
-      <img src="physical.gif" alt="Hands-on Work" />
+      <video autoplay muted loop playsinline>
+        <source src="physical.mp4" type="video/mp4" />
+      </video>
     </a>
     <a class="section" href="grit.html">
       <div class="label">Grit</div>
-      <img src="grit.gif" alt="Gritty or Experimental Work" />
+      <video autoplay muted loop playsinline>
+        <source src="grit.mp4" type="video/mp4" />
+      </video>
     </a>
   </div>
 
