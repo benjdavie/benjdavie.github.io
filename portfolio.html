@@ -50,44 +50,11 @@
       100% { transform: translateX(-100%); }
     }
 
-    .intro {
-      position: relative;
-      height: 50vh;
-      width: 100%;
-      overflow: hidden;
-      margin-top: 40px;
-      cursor: pointer;
-    }
-
-    .intro video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-
-    .scroll-arrow {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 4rem;
-      color: white;
-      z-index: 2;
-      animation: blink 1s infinite;
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 50vh 50vh;
+      margin-top: 40px; /* offset for marquee */
     }
 
     .section {
@@ -133,6 +100,7 @@
     .mobile-sections {
       display: none;
       flex-direction: column;
+      margin-top: 40px; /* offset for marquee */
     }
 
     .mobile-section {
@@ -180,14 +148,6 @@
   <!-- Marquee Header -->
   <div class="marquee">
     <div class="marquee-text">BENJAMIN DAVIE DESIGN &nbsp; • &nbsp; BENJAMIN DAVIE DESIGN &nbsp; • &nbsp; BENJAMIN DAVIE DESIGN</div>
-  </div>
-
-  <!-- Intro Section -->
-  <div class="intro" onclick="document.getElementById('bottom').scrollIntoView({ behavior: 'smooth' })">
-    <video autoplay muted loop playsinline>
-      <source src="intro.mp4" type="video/mp4" />
-    </video>
-    <div class="scroll-arrow">↓</div>
   </div>
 
   <!-- Desktop Grid -->
