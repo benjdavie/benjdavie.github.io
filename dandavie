@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dan Davie | Guitarist</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      width: 100%;
+      max-width: 360px;
+      padding: 24px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 8px 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    .subtitle {
+      margin-bottom: 24px;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .link {
+      display: block;
+      margin: 12px 0;
+      padding: 16px 0;
+      text-decoration: none;
+      color: #000000;
+      border: 2px solid #000000;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+    .link:hover {
+      background: #000000;
+      color: #ffffff;
+    }
+    footer {
+      margin-top: 28px;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Dan Davie</h1>
+    <div class="subtitle">Guitarist</div>
+
+    <!-- Replace the # links below with Dan's real links -->
+    <a class="link" href="https://venmo.com/u/dandavie" target="_blank" rel="noopener">Tip Jar (Venmo)</a>
+    <a class="link" href="https://www.instagram.com/dan_davie/" target="_blank" rel="noopener">Instagram</a>
+    <a class="link" href="https://www.facebook.com/dan.davie.3" target="_blank" rel="noopener">Facebook</a>
+
+    <footer>
+      © <span id="year"></span> Dan Davie
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
