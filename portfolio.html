@@ -20,14 +20,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .dot{width:4px;height:4px;background:var(--light);border-radius:50%;cursor:pointer;transition:all .4s}
 .dot.active{background:var(--black);transform:scale(1.8)}
 .section{height:100vh;width:100%;scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.hero{background:var(--white);flex-direction:column;padding:0 52px}
-.hero-body{width:100%;max-width:1100px}
+.hero{background:var(--white);flex-direction:column;padding:0 52px;align-items:flex-start}
+.hero-body{width:55%;max-width:600px;position:relative;z-index:1}
 .hero-title{font-family:var(--sans);font-weight:300;font-size:clamp(5rem,12vw,10.5rem);line-height:.91;letter-spacing:-.035em;color:var(--black)}
 .hero-title em{font-style:normal;font-weight:300;color:var(--mid)}
 .hero-sub-row{display:flex;align-items:flex-end;justify-content:space-between;width:100%;margin-top:52px;padding-bottom:10px;border-bottom:1px solid var(--light)}
 .hero-discipline{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
 .hero-scroll{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--light);animation:nudge 2.8s ease-in-out infinite}
 @keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes blink-fade{0%,100%{opacity:.15}50%{opacity:.7}}
 .project{background:var(--white);padding:0 52px}
 .project:nth-child(even){background:var(--off)}
 .project-inner{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
@@ -51,6 +52,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.4s}.d5{transition-delay:.52s}
+.hero-arrow{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;animation:blink-fade 2.4s ease-in-out infinite;pointer-events:none}
+.hero-arrow svg{width:20px;height:20px;stroke:var(--black);fill:none;stroke-width:1.5}
+.hero-photo{position:absolute;top:0;right:0;width:45%;height:100%;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-photo .ph-face{width:100%;height:100%;background:#e8e7e4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px}
+.hero-photo .ph-face .ph-line{width:36px;height:1px;background:#bbb}
+.hero-photo .ph-face .ph-text{font-family:var(--mono);font-size:.52rem;letter-spacing:.25em;color:#bbb;text-transform:uppercase}
 .contact{background:var(--black);flex-direction:column;align-items:flex-start;padding:0 52px}
 .contact-inner{max-width:1100px;width:100%}
 .contact-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
@@ -134,6 +142,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
       <span class="hero-scroll">Scroll ↓</span>
     </div>
   </div>
+  <div class="hero-photo"><img src="ben.jpg" alt="Ben Davie"></div>
+  <div class="hero-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
   <div class="section-line"></div>
 </section>
 
