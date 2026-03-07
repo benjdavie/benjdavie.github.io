@@ -74,8 +74,18 @@ video.project-img{transition:transform .7s}
 .modal-close{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:8px 0;transition:color .2s}
 .modal-close:hover{color:var(--black)}
 .modal-body{padding:52px;max-width:1100px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.modal-img-wrap{position:sticky;top:96px;display:flex;flex-direction:column;gap:12px}
-.modal-img-wrap img,.modal-img-wrap video{width:100%;display:block;object-fit:cover}
+.modal-img-wrap{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+.modal-img-wrap img,.modal-img-wrap video{width:100%;display:block;object-fit:cover;cursor:zoom-in;transition:opacity .2s}
+.modal-img-wrap img:hover{opacity:.88}
+.lightbox{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.95);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox img,.lightbox video{max-width:92vw;max-height:92vh;object-fit:contain;display:block}
+.lightbox-close{position:absolute;top:24px;right:32px;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;transition:color .2s}
+.lightbox-close:hover{color:white}
+.lightbox-prev,.lightbox-next{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;padding:16px;transition:color .2s}
+.lightbox-prev{left:24px}.lightbox-next{right:24px}
+.lightbox-prev:hover,.lightbox-next:hover{color:white}
+.lightbox-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:rgba(255,255,255,.35)}
 .modal-num{font-family:var(--mono);font-size:.52rem;letter-spacing:.28em;color:var(--light);text-transform:uppercase;margin-bottom:16px}
 .modal-big-title{font-family:var(--sans);font-weight:300;font-size:clamp(2rem,4vw,3.5rem);line-height:.95;letter-spacing:-.03em;color:var(--black);margin-bottom:28px}
 .modal-big-title em{font-style:normal;color:var(--mid)}
@@ -112,6 +122,14 @@ video.project-img{transition:transform .7s}
       <a class="modal-ext-link hidden" id="modal-ext-link" href="#" target="_blank">Visit project &nbsp;&#8594;</a>
     </div>
   </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lb-close">&#x2715; &nbsp;Close</button>
+  <button class="lightbox-prev" id="lb-prev">&#8592;</button>
+  <div id="lb-media"></div>
+  <button class="lightbox-next" id="lb-next">&#8594;</button>
+  <div class="lightbox-counter" id="lb-counter"></div>
 </div>
 
 <section class="section hero" data-i="0">
@@ -274,15 +292,60 @@ function openModal(i){
     }
     media.appendChild(el);
   });
+  // attach lightbox to each media item
+  var items = media.querySelectorAll('img, video');
+  var mediaList = p.media.filter(function(m){return true;});
+  items.forEach(function(el, idx){
+    el.style.cursor='zoom-in';
+    el.onclick=function(e){e.stopPropagation();openLightbox(mediaList,idx);};
+  });
   var el=document.getElementById('modal-ext-link');
   if(p.link){el.href=p.link;el.classList.remove('hidden');}else{el.classList.add('hidden');}
   modal.scrollTop=0;
   modal.classList.add('open');
   document.documentElement.style.overflow='hidden';
 }
+var lbIndex=0;var lbItems=[];
+function openLightbox(items,idx){
+  lbItems=items;lbIndex=idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.documentElement.style.overflow='hidden';
+}
+function renderLightbox(){
+  var m=lbItems[lbIndex];
+  var wrap=document.getElementById('lb-media');
+  wrap.innerHTML='';
+  var el;
+  if(m.type==='video'){
+    el=document.createElement('video');
+    el.src=m.src;el.autoplay=true;el.muted=true;el.loop=true;
+    el.setAttribute('playsinline','');
+    el.style.cssText='max-width:92vw;max-height:92vh;display:block;';
+  } else {
+    el=document.createElement('img');
+    el.src=m.src;
+    el.style.cssText='max-width:92vw;max-height:92vh;display:block;object-fit:contain;';
+  }
+  wrap.appendChild(el);
+  document.getElementById('lb-counter').textContent=(lbIndex+1)+' / '+lbItems.length;
+  document.getElementById('lb-prev').style.opacity=lbIndex===0?'0.2':'1';
+  document.getElementById('lb-next').style.opacity=lbIndex===lbItems.length-1?'0.2':'1';
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open');document.documentElement.style.overflow='hidden';}
+document.getElementById('lb-close').addEventListener('click',closeLightbox);
+document.getElementById('lb-prev').addEventListener('click',function(){if(lbIndex>0){lbIndex--;renderLightbox();}});
+document.getElementById('lb-next').addEventListener('click',function(){if(lbIndex<lbItems.length-1){lbIndex++;renderLightbox();}});
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
+document.addEventListener('keydown',function(e){
+  if(!document.getElementById('lightbox').classList.contains('open'))return;
+  if(e.key==='ArrowLeft'&&lbIndex>0){lbIndex--;renderLightbox();}
+  if(e.key==='ArrowRight'&&lbIndex<lbItems.length-1){lbIndex++;renderLightbox();}
+  if(e.key==='Escape')closeLightbox();
+});
 function closeModal(){modal.classList.remove('open');document.documentElement.style.overflow='';}
 document.getElementById('modal-close').addEventListener('click',closeModal);
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!document.getElementById('lightbox').classList.contains('open'))closeModal();});
 
 var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring'),mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
