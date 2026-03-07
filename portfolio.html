@@ -142,14 +142,14 @@ video.project-img{transition:transform .7s}
       <span class="hero-scroll">Scroll &#8595;</span>
     </div>
   </div>
-  <div class="hero-photo" id="hero-photo-wrap" onclick="launchConfetti()" style="cursor:pointer"><img src="ben.jpeg" alt="Ben Davie" onerror="this.src='ben.jpg';this.onerror=function(){this.src='ben.png';this.onerror=null;}"></div>
+  <div class="hero-photo" id="hero-photo-wrap" onclick="launchConfetti()" style="cursor:pointer"><img src="ben.jpg" alt="Ben Davie" loading="eager"></div>
   <div class="hero-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
   <div class="section-line"></div>
 </section>
 
 <section class="section project" data-i="1">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" src="angel-tech.jpeg" alt="Angel Tech" onerror="tryNext(this,['angel-tech.jpg','angel-tech.png'])"></div>
+    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" loading="eager" src="Angel-tech.JPG" alt="Angel Tech"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">01 / 06</div>
       <h2 class="proj-title reveal d2">Angel<br><em>Tech</em></h2>
@@ -177,7 +177,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="3">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" src="shaped-by-water.jpeg" alt="Shaped by Water" onerror="tryNext(this,['shaped-by-water.jpg','shaped-by-water.png'])"></div>
+    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" loading="eager" src="shaped-by-water.jpg" alt="Shaped by Water"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">03 / 06</div>
       <h2 class="proj-title reveal d2">Shaped<br><em>by Water</em></h2>
@@ -205,7 +205,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="5">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(4)"><img class="project-img" src="keyboard-redesign.jpeg" alt="Keyboard Redesign" onerror="tryNext(this,['keyboard-redesign.jpg','keyboard-redesign.png'])"></div>
+    <div class="project-visual reveal" onclick="openModal(4)"><img class="project-img" loading="eager" src="Screenshot_2025-01-23_at_12_05_17_PM.png" alt="Keyboard Redesign"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">05 / 06</div>
       <h2 class="proj-title reveal d2">Keyboard<br><em>Redesign</em></h2>
@@ -219,7 +219,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="6">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" src="airbnb-redesign.jpeg" alt="Airbnb Redesign" onerror="tryNext(this,['airbnb-redesign.jpg','airbnb-redesign.png'])"></div>
+    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" loading="eager" src="airbnb-redesign.jpg" alt="Airbnb Redesign" style="display:none"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">06 / 06</div>
       <h2 class="proj-title reveal d2">Airbnb<br><em>Redesign</em></h2>
@@ -235,7 +235,7 @@ video.project-img{transition:transform .7s}
   <div class="contact-inner">
     <div class="contact-label reveal">Let's talk</div>
     <h2 class="contact-title reveal d2">Get in<br><em>touch</em></h2>
-    <a href="mailto:benjidavie@gmail.com" class="contact-link reveal d3">benjidavie@gmail.com &nbsp;&#8594;</a>
+    <a href="/cdn-cgi/l/email-protection#d5b7b0bbbfbcb1b4a3bcb095b2b8b4bcb9fbb6bab8" class="contact-link reveal d3"><span class="__cf_email__" data-cfemail="9efcfbf0f4f7faffe8f7fbdef9f3fff7f2b0fdf1f3">[email&#160;protected]</span> &nbsp;&#8594;</a>
     <a href="tel:+14356806264" class="contact-link reveal d4">+1 435 680 6264 &nbsp;&#8594;</a>
     <a href="https://www.instagram.com/benauxo" target="_blank" class="contact-link reveal d5">@benauxo &nbsp;&#8594;</a>
   </div>
@@ -245,7 +245,7 @@ video.project-img{transition:transform .7s}
   </div>
 </section>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 function tryNext(img, fallbacks) {
   var i = parseInt(img.dataset.try || 0);
   if (i < fallbacks.length) {
@@ -259,11 +259,13 @@ function tryNext(img, fallbacks) {
 var projects = [
   {num:'01 / 06', title:'Angel<br><em>Tech</em>', plain:'Angel Tech',
    media:[
-     {type:'img', srcs:['angel-tech.jpeg','angel-tech.jpg','angel-tech.png']},
-     {type:'img', srcs:['angel-tech-2.jpeg','angel-tech-2.jpg','angel-tech-2.png']},
-     {type:'img', srcs:['angel-tech-3.jpeg','angel-tech-3.jpg','angel-tech-3.png']},
-     {type:'img', srcs:['angel-tech-4.jpeg','angel-tech-4.jpg','angel-tech-4.png']},
-     {type:'img', srcs:['angel-tech-5.jpeg','angel-tech-5.jpg','angel-tech-5.png']}
+     {type:'img', srcs:['Angel-tech.JPG','angel-tech.jpeg','angel-tech.jpg','angel-tech.png']},
+     {type:'img', srcs:['angel-tech-2.jpg','angel-tech-2.jpeg','angel-tech-2.png']},
+     {type:'img', srcs:['angel-tech-3.jpg','angel-tech-3.jpeg','angel-tech-3.png']},
+     {type:'img', srcs:['angel-tech-4.jpg','angel-tech-4.jpeg','angel-tech-4.png']},
+     {type:'img', srcs:['angel-tech-5.jpg','angel-tech-5.jpeg','angel-tech-5.png']},
+     {type:'img', srcs:['angel-tech-6.jpg','angel-tech-6.jpeg','angel-tech-6.png']},
+     {type:'img', srcs:['7CA1329E-01E7-44D8-8357-E7630725D0A5.JPG']}
    ],
    tags:['Game Design','Wearables','Fabrication','Narrative'],
    desc:'A fully realised world — a playable game paired with physical acrylic wings, a game controller helmet, and a full reflective suit. Built with a complete original storyline from concept to costume.',
@@ -271,7 +273,7 @@ var projects = [
   {num:'02 / 06', title:'The Grit<br><em>Social &amp; Brand</em>', plain:'The Grit',
    media:[
      {type:'video', srcs:['grit.mp4']},
-     {type:'img', srcs:['grit-social-2.jpeg','grit-social-2.jpg','grit-social-2.png']},
+     {type:'img', srcs:['grit-social-2.jpg','grit-social-2.jpeg','grit-social-2.png']},
      {type:'img', srcs:['grit-social-3.jpeg','grit-social-3.jpg','grit-social-3.png']},
      {type:'img', srcs:['grit-social-4.jpeg','grit-social-4.jpg','grit-social-4.png']},
      {type:'img', srcs:['grit-social-5.jpeg','grit-social-5.jpg','grit-social-5.png']},
@@ -283,8 +285,10 @@ var projects = [
   {num:'03 / 06', title:'Shaped<br><em>by Water</em>', plain:'Shaped by Water',
    media:[
      {type:'img', srcs:['shaped-by-water.jpeg','shaped-by-water.jpg','shaped-by-water.png']},
-     {type:'img', srcs:['shaped-by-water-2.jpeg','shaped-by-water-2.jpg','shaped-by-water-2.png']},
-     {type:'img', srcs:['shaped-by-water-3.jpeg','shaped-by-water-3.jpg','shaped-by-water-3.png']}
+     {type:'img', srcs:['Image.jpg']},
+     {type:'img', srcs:['Screenshot_2025-11-04_at_7_08_58_PM.png']},
+     {type:'img', srcs:['Screenshot_2025-11-04_at_7_11_07_PM.png']},
+     {type:'img', srcs:['31E85E5C-3B37-4806-BEE5-D847D2977AC3_1_102_o.jpeg']}
    ],
    tags:['Installation','3D Render','Collaboration','Environment'],
    desc:'A large-scale immersive installation exploring water as form-giver. Includes a full photorealistic 3D render of a lake environment. Created as a group project — concept, space, and world-building working together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',
@@ -292,8 +296,12 @@ var projects = [
   {num:'04 / 06', title:'City<br><em>Scrapes</em>', plain:'City Scrapes',
    media:[
      {type:'video', srcs:['research.mp4']},
-     {type:'img', srcs:['city-scrapes-2.jpeg','city-scrapes-2.jpg','city-scrapes-2.png']},
-     {type:'img', srcs:['city-scrapes-3.jpeg','city-scrapes-3.jpg','city-scrapes-3.png']}
+     {type:'img', srcs:['Screenshot_2026-03-07_at_1_08_55_AM.png','city-scrapes-1.png']},
+     {type:'img', srcs:['texture_rock_city.png','city-scrapes-2.png']},
+     {type:'img', srcs:['mount.png','city-scrapes-3.png']},
+     {type:'img', srcs:['art_hot_spots.png','city-scrapes-4.png']},
+     {type:'img', srcs:['Screenshot_2025-04-02_205816.png','city-scrapes-5.png']},
+     {type:'img', srcs:['Screenshot_2025-04-08_174007.png','city-scrapes-6.png']}
    ],
    tags:['Photography','Research','Public Art','Salt Lake City'],
    desc:'A study on how people interact with artwork in public spaces across Salt Lake City — observing, documenting, and questioning the relationship between art, environment, and the everyday.',
@@ -301,8 +309,13 @@ var projects = [
   {num:'05 / 06', title:'Keyboard<br><em>Redesign</em>', plain:'Keyboard Redesign',
    media:[
      {type:'img', srcs:['keyboard-redesign.jpeg','keyboard-redesign.jpg','keyboard-redesign.png']},
-     {type:'img', srcs:['keyboard-redesign-2.jpeg','keyboard-redesign-2.jpg','keyboard-redesign-2.png']},
-     {type:'img', srcs:['keyboard-redesign-3.jpeg','keyboard-redesign-3.jpg','keyboard-redesign-3.png']}
+     {type:'img', srcs:['Screenshot_2025-01-20_at_5_09_52_PM.png']},
+     {type:'img', srcs:['Screenshot_2025-01-20_at_5_16_00_PM.png']},
+     {type:'img', srcs:['IMG_5927.JPG','IMG_5927.jpg']},
+     {type:'img', srcs:['Screenshot_2025-01-22_at_6_16_27_PM.png']},
+     {type:'img', srcs:['Screenshot_2025-01-23_at_12_05_17_PM.png']},
+     {type:'img', srcs:['Screenshot_2025-01-23_at_12_05_33_PM.png']},
+     {type:'img', srcs:['Screenshot_2025-01-23_at_12_06_06_PM.png']}
    ],
    tags:['Industrial Design','Hardware','UX'],
    desc:'A ground-up rethink of the keyboard — form, layout, and feel. Questioning assumptions about how we interact with the most-used tool on a desk.',
@@ -470,8 +483,14 @@ var io=new IntersectionObserver(function(entries){
     navIdx.textContent=String(i+1).padStart(2,'0')+' / '+sections.length;
     e.target.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
   });
-},{threshold:0.15});
+},{threshold:0.05});
 sections.forEach(function(s){io.observe(s);});
+// Force all reveals visible immediately — don't wait for scroll
+document.querySelectorAll('.reveal').forEach(function(el){
+  var rect=el.closest('.section')?el.closest('.section').getBoundingClientRect():null;
+  if(!rect||rect.top<window.innerHeight)el.classList.add('in');
+});
+// Also always force hero
 document.querySelectorAll('.section[data-i="0"] .reveal').forEach(function(el){el.classList.add('in');});
 </script>
 </body>
