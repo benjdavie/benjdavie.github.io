@@ -140,14 +140,14 @@ video.project-img{transition:transform .7s}
       <span class="hero-scroll">Scroll &#8595;</span>
     </div>
   </div>
-  <div class="hero-photo"><img src="ben.jpg" alt="Ben Davie"></div>
+  <div class="hero-photo"><img src="ben.jpeg" alt="Ben Davie"></div>
   <div class="hero-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
   <div class="section-line"></div>
 </section>
 
 <section class="section project" data-i="1">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" src="angel-tech.jpg" alt="Angel Tech"></div>
+    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" src="angel-tech.jpeg" alt="Angel Tech"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">01 / 06</div>
       <h2 class="proj-title reveal d2">Angel<br><em>Tech</em></h2>
@@ -175,7 +175,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="3">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" src="shaped-by-water.jpg" alt="Shaped by Water"></div>
+    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" src="shaped-by-water.jpeg" alt="Shaped by Water"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">03 / 06</div>
       <h2 class="proj-title reveal d2">Shaped<br><em>by Water</em></h2>
@@ -203,7 +203,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="5">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" src="keyboard-redesign.jpg" alt="Keyboard Redesign"></div>
+    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" src="keyboard-redesign.jpeg" alt="Keyboard Redesign"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">05 / 06</div>
       <h2 class="proj-title reveal d2">Keyboard<br><em>Redesign</em></h2>
@@ -217,7 +217,7 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="6">
   <div class="project-inner">
-    <div class="project-visual reveal" onclick="openModal(1)"><img class="project-img" src="airbnb-redesign.jpg" alt="Airbnb Redesign"></div>
+    <div class="project-visual reveal" onclick="openModal(1)"><img class="project-img" src="airbnb-redesign.jpeg" alt="Airbnb Redesign"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">06 / 06</div>
       <h2 class="proj-title reveal d2">Airbnb<br><em>Redesign</em></h2>
@@ -246,24 +246,41 @@ video.project-img{transition:transform .7s}
 </section>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function tryImgSrc(img, base, exts, i){
+  i = i||0;
+  img.onerror=function(){ if(++i<exts.length) img.src=base+'.'+exts[i]; else img.style.display='none'; };
+  img.src=base+'.'+exts[i];
+}
+document.querySelectorAll('.project-img[src]').forEach(function(img){
+  if(img.tagName==='VIDEO') return;
+  var base=img.src.replace(/\.(jpeg|jpg|png)$/i,'').replace(window.location.origin+window.location.pathname.replace(/[^/]*$/,''),'');
+  var orig=img.getAttribute('src').replace(/\.(jpeg|jpg|png)$/i,'');
+  img.onerror=function(){
+    var tried=parseInt(img.dataset.tried||0)+1;
+    img.dataset.tried=tried;
+    var exts=['jpeg','jpg','png'];
+    if(tried<exts.length) img.src=orig+'.'+exts[tried];
+    else img.style.display='none';
+  };
+});
 var projects=[
   {num:'01 / 06',title:'Angel<br><em>Tech</em>',plain:'Angel Tech',
-   media:[{type:'img',src:'angel-tech.jpg'},{type:'img',src:'angel-tech-2.jpg'},{type:'img',src:'angel-tech-3.jpg'},{type:'img',src:'angel-tech-4.jpg'},{type:'img',src:'angel-tech-5.jpg'}],
+   media:[{type:'img',src:'angel-tech.jpeg'},{type:'img',src:'angel-tech-2.jpeg'},{type:'img',src:'angel-tech-3.jpeg'},{type:'img',src:'angel-tech-4.jpeg'},{type:'img',src:'angel-tech-5.jpeg'}],
    tags:['Game Design','Wearables','Fabrication','Narrative'],desc:'A fully realised world — a playable game paired with physical acrylic wings, a game controller helmet, and a full reflective suit. Built with a complete original storyline from concept to costume.',link:''},
   {num:'02 / 06',title:'Airbnb<br><em>Redesign</em>',plain:'Airbnb Redesign',
-   media:[{type:'img',src:'airbnb-redesign.jpg'},{type:'img',src:'airbnb-redesign-2.jpg'},{type:'img',src:'airbnb-redesign-3.jpg'}],
+   media:[{type:'img',src:'airbnb-redesign.jpeg'},{type:'img',src:'airbnb-redesign-2.jpeg'},{type:'img',src:'airbnb-redesign-3.jpeg'}],
    tags:['UI/UX','Product Design','Adobe'],desc:'A ground-up redesign of the Airbnb experience, presented at Adobe. Rethinking how people discover, trust, and book — from information architecture through to polished interface. <a href="https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',link:'https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/'},
   {num:'03 / 06',title:'Shaped<br><em>by Water</em>',plain:'Shaped by Water',
-   media:[{type:'img',src:'shaped-by-water.jpg'},{type:'img',src:'shaped-by-water-2.jpg'},{type:'img',src:'shaped-by-water-3.jpg'}],
+   media:[{type:'img',src:'shaped-by-water.jpeg'},{type:'img',src:'shaped-by-water-2.jpeg'},{type:'img',src:'shaped-by-water-3.jpeg'}],
    tags:['Installation','3D Render','Collaboration','Environment'],desc:'A large-scale immersive installation exploring water as form-giver. Includes a full photorealistic 3D render of a lake environment. Created as a group project — concept, space, and world-building working together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',link:'https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-'},
   {num:'04 / 06',title:'The Grit<br><em>Social &amp; Brand</em>',plain:'The Grit',
-   media:[{type:'video',src:'grit.mp4'},{type:'img',src:'grit-social-2.jpg'},{type:'img',src:'grit-social-3.jpg'},{type:'img',src:'grit-social-4.jpg'},{type:'img',src:'grit-social-5.jpg'},{type:'img',src:'grit-social-6.jpg'}],
+   media:[{type:'video',src:'grit.mp4'},{type:'img',src:'grit-social-2.jpeg'},{type:'img',src:'grit-social-3.jpeg'},{type:'img',src:'grit-social-4.jpeg'},{type:'img',src:'grit-social-5.jpeg'},{type:'img',src:'grit-social-6.jpeg'}],
    tags:['Social Media','Marketing','Fashion','Brand Identity'],desc:'Creative direction and social media marketing for The Grit — spanning content strategy, campaign visuals, and an in-house clothing line. Building a brand voice from the ground up.',link:''},
   {num:'05 / 06',title:'City<br><em>Scrapes</em>',plain:'City Scrapes',
-   media:[{type:'video',src:'research.mp4'},{type:'img',src:'city-scrapes-2.jpg'},{type:'img',src:'city-scrapes-3.jpg'}],
+   media:[{type:'video',src:'research.mp4'},{type:'img',src:'city-scrapes-2.jpeg'},{type:'img',src:'city-scrapes-3.jpeg'}],
    tags:['Photography','Research','Public Art','Salt Lake City'],desc:'A study on how people interact with artwork in public spaces across Salt Lake City — observing, documenting, and questioning the relationship between art, environment, and the everyday.',link:''},
   {num:'06 / 06',title:'Keyboard<br><em>Redesign</em>',plain:'Keyboard Redesign',
-   media:[{type:'img',src:'keyboard-redesign.jpg'},{type:'img',src:'keyboard-redesign-2.jpg'},{type:'img',src:'keyboard-redesign-3.jpg'}],
+   media:[{type:'img',src:'keyboard-redesign.jpeg'},{type:'img',src:'keyboard-redesign-2.jpeg'},{type:'img',src:'keyboard-redesign-3.jpeg'}],
    tags:['Industrial Design','Hardware','UX'],desc:'A ground-up rethink of the keyboard — form, layout, and feel. Questioning assumptions about how we interact with the most-used tool on a desk.',link:''}
 ];
 
@@ -284,13 +301,22 @@ function openModal(i){
       el.src=m.src; el.autoplay=true; el.muted=true; el.loop=true;
       el.setAttribute('playsinline','');
       el.style.cssText='width:100%;display:block;';
+      media.appendChild(el);
     } else {
+      var base=m.src.replace(/\.(jpeg|jpg|png)$/i,'');
+      var exts=['jpeg','jpg','png'];
+      var tried=0;
       el=document.createElement('img');
-      el.src=m.src; el.alt=p.plain;
+      el.alt=p.plain;
       el.style.cssText='width:100%;display:block;';
-      el.onerror=function(){this.style.display='none';};
+      el.onerror=function(){
+        tried++;
+        if(tried<exts.length){ el.src=base+'.'+exts[tried]; }
+        else { el.style.display='none'; }
+      };
+      el.src=base+'.'+exts[0];
+      media.appendChild(el);
     }
-    media.appendChild(el);
   });
   // attach lightbox to each media item
   var items = media.querySelectorAll('img, video');
