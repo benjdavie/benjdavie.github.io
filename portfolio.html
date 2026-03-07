@@ -1,4 +1,522 @@
-<!DOCTYPE html>
+<div class="sketchfab-embed-wrapper"> <iframe title="rock downsampled" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share src="https://sketchfab.com/models/7a27147c10bf4d01aaf386e11118dc7c/embed"> </iframe> <p style="font-size: 13px; font-weight: normal; margin: 5px; color: #4A4A4A;"> <a href="https://sketchfab.com/3d-models/rock-downsampled-7a27147c10bf4d01aaf386e11118dc7c?utm_medium=embed&utm_campaign=share-popup&utm_content=7a27147c10bf4d01aaf386e11118dc7c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> rock downsampled </a> by <a href="https://sketchfab.com/benjidavie?utm_medium=embed&utm_campaign=share-popup&utm_content=7a27147c10bf4d01aaf386e11118dc7c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;"> benjidavie </a> on <a href="https://sketchfab.com?utm_medium=embed&utm_campaign=share-popup&utm_content=7a27147c10bf4d01aaf386e11118dc7c" target="_blank" rel="nofollow" style="font-weight: bold; color: #1CAAD9;">Sketchfab</a></p></div><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben Davie &mdash; Portfolio</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--white:#fafaf8;--off:#f2f1ee;--black:#0e0e0e;--mid:#888;--light:#ccc;--sans:'Neue Haas Grotesk Display Pro','Helvetica Neue','Cabinet Grotesk',sans-serif;--mono:'DM Mono',monospace}
+html{scroll-snap-type:y mandatory;overflow-y:scroll;overflow-x:hidden}
+body{background:var(--white);color:var(--black);font-family:var(--mono);cursor:none}
+#cur{position:fixed;width:14px;height:14px;background:white;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cur-ring{position:fixed;width:38px;height:38px;border:1px solid white;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:28px 52px;pointer-events:none}
+.nav-name{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black)}
+.nav-index{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--mid)}
+.scroll-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:500}
+.dot{width:4px;height:4px;background:var(--light);border-radius:50%;cursor:pointer;transition:all .4s}
+.dot.active{background:var(--black);transform:scale(1.8)}
+.section{height:100vh;width:100%;scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero{background:var(--white);flex-direction:column;padding:0 52px;align-items:flex-start}
+.hero-body{width:55%;max-width:600px;position:relative;z-index:1}
+.hero-photo{position:absolute;top:0;right:0;width:45%;height:100%;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-title{font-family:var(--sans);font-weight:300;font-size:clamp(5rem,12vw,10.5rem);line-height:.91;letter-spacing:-.035em;color:var(--black)}
+.hero-title em{font-style:normal;font-weight:300;color:var(--mid)}
+.hero-sub-row{display:flex;align-items:flex-end;justify-content:space-between;width:100%;margin-top:52px;padding-bottom:10px;border-bottom:1px solid var(--light)}
+.hero-discipline{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+.hero-scroll{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--light);animation:nudge 2.8s ease-in-out infinite}
+.hero-arrow{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;animation:blink-fade 2.4s ease-in-out infinite;pointer-events:none}
+.hero-arrow svg{width:20px;height:20px;stroke:var(--black);fill:none;stroke-width:1.5}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes blink-fade{0%,100%{opacity:.15}50%{opacity:.7}}
+.project{background:var(--white);padding:0 52px}
+.project:nth-child(even){background:var(--off)}
+.project-inner{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.project:nth-child(odd) .project-inner{direction:ltr}
+.project:nth-child(even) .project-inner{direction:rtl}
+.project:nth-child(even) .project-inner>*{direction:ltr}
+.project-visual{aspect-ratio:4/3;background:#e8e7e4;overflow:hidden;position:relative;cursor:pointer}
+.project:nth-child(even) .project-visual{background:#dddcda}
+.project-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+video.project-img{transition:transform .7s}
+.project-visual:hover .project-img{transform:scale(1.02)}
+.project-text{display:flex;flex-direction:column}
+.proj-num{font-family:var(--mono);font-size:.52rem;letter-spacing:.28em;color:var(--light);text-transform:uppercase;margin-bottom:20px}
+.proj-title{font-family:var(--sans);font-weight:300;font-size:clamp(2.2rem,3.8vw,3.4rem);line-height:1.02;letter-spacing:-.03em;color:var(--black);margin-bottom:26px}
+.proj-title em{font-style:normal;font-weight:300;color:var(--mid)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--light);color:var(--mid)}
+.proj-desc{font-family:var(--mono);font-size:.68rem;line-height:1.95;color:var(--mid);margin-bottom:34px;max-width:360px;font-weight:300}
+.proj-desc a{color:#2563eb;text-decoration:none;border-bottom:1px solid #2563eb}
+.proj-link{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none;padding-bottom:6px;border-bottom:1px solid var(--black);width:fit-content;transition:gap .35s,color .25s,border-color .25s;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer}
+.proj-link:hover{gap:22px;color:var(--mid);border-color:var(--mid)}
+.section-line{position:absolute;bottom:0;left:52px;right:52px;height:1px;background:var(--light)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.4s}.d5{transition-delay:.52s}
+.contact{background:var(--black);flex-direction:column;align-items:flex-start;padding:0 52px}
+.contact-inner{max-width:1100px;width:100%}
+.contact-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
+.contact-title{font-family:var(--sans);font-weight:300;font-size:clamp(4rem,10vw,9rem);line-height:.91;letter-spacing:-.035em;color:var(--white);margin-bottom:48px}
+.contact-title em{font-style:normal;color:rgba(255,255,255,.35)}
+.contact-link{display:inline-flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--white);text-decoration:none;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.2);transition:gap .35s,border-color .3s;margin-bottom:16px}
+.contact-link:hover{gap:26px;border-color:rgba(255,255,255,.6)}
+.contact-footer{position:absolute;bottom:28px;left:52px;right:52px;display:flex;justify-content:space-between}
+.contact-copy{font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;color:rgba(255,255,255,.18)}
+.modal{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;background:var(--white);transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1);overflow-y:auto}
+.modal.open{transform:translateY(0)}
+.modal-header{position:sticky;top:0;background:var(--white);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:24px 52px;border-bottom:1px solid var(--light)}
+.modal-title{font-family:var(--sans);font-weight:300;font-size:1.1rem;letter-spacing:-.02em;color:var(--black)}
+.modal-close{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:8px 0;transition:color .2s}
+.modal-close:hover{color:var(--black)}
+.modal-body{padding:52px;max-width:1100px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.modal-gallery{position:sticky;top:96px;display:flex;flex-direction:column;gap:16px}
+.modal-gallery img,.modal-gallery video{width:100%;display:block;cursor:zoom-in;transition:opacity .2s}
+.modal-gallery img:hover{opacity:.88}
+.modal-num{font-family:var(--mono);font-size:.52rem;letter-spacing:.28em;color:var(--light);text-transform:uppercase;margin-bottom:16px}
+.modal-big-title{font-family:var(--sans);font-weight:300;font-size:clamp(2rem,4vw,3.5rem);line-height:.95;letter-spacing:-.03em;color:var(--black);margin-bottom:28px}
+.modal-big-title em{font-style:normal;color:var(--mid)}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.modal-desc{font-family:var(--mono);font-size:.7rem;line-height:2;color:var(--mid);margin-bottom:36px;font-weight:300}
+.modal-desc a{color:#2563eb;text-decoration:none;border-bottom:1px solid #2563eb}
+.modal-ext-link{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none;padding-bottom:6px;border-bottom:1px solid var(--black);transition:gap .3s,color .2s}
+.modal-ext-link:hover{gap:20px;color:var(--mid)}
+.modal-ext-link.hidden{display:none}
+.lightbox{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,.96);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lightbox.open{opacity:1;pointer-events:all}
+.lightbox img,.lightbox video{max-width:90vw;max-height:90vh;object-fit:contain;display:block}
+.lb-close{position:absolute;top:24px;right:32px;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;transition:color .2s}
+.lb-close:hover{color:white}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);font-size:1.2rem;color:rgba(255,255,255,.4);background:none;border:none;cursor:pointer;padding:20px;transition:color .2s}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-prev:hover,.lb-next:hover{color:white}
+.lb-counter{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.55rem;letter-spacing:.2em;color:rgba(255,255,255,.35)}
+.confetti-piece{position:fixed;width:10px;height:10px;pointer-events:none;z-index:9999;border-radius:2px;animation:confetti-fall linear forwards}
+@keyframes confetti-fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@media(max-width:768px){nav,.hero,.project,.contact{padding:0 24px}nav{padding-top:20px}.section-line{left:24px;right:24px}.project-inner{grid-template-columns:1fr;gap:28px;direction:ltr!important}.project-inner>*{direction:ltr!important}.contact-footer{left:24px;right:24px}.modal-header{padding:20px 24px}.modal-body{grid-template-columns:1fr;padding:32px 24px;gap:32px}.modal-gallery{position:static}.hero-photo{width:40%}.hero-body{width:60%}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<nav>
+  <span class="nav-name">Ben Davie</span>
+  <span class="nav-index" id="navIdx">01 / 08</span>
+</nav>
+<div class="scroll-dots" id="dots"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <span class="modal-title" id="modal-title"></span>
+    <button class="modal-close" id="modal-close">&#x2715;&nbsp; Close</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-gallery" id="modal-gallery"></div>
+    <div class="modal-info">
+      <div class="modal-num" id="modal-num"></div>
+      <h2 class="modal-big-title" id="modal-big-title"></h2>
+      <div class="modal-tags" id="modal-tags"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <a class="modal-ext-link hidden" id="modal-ext-link" href="#" target="_blank">Visit project &nbsp;&#8594;</a>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lb-close">&#x2715;&nbsp; Close</button>
+  <button class="lb-prev" id="lb-prev">&#8592;</button>
+  <div id="lb-media"></div>
+  <button class="lb-next" id="lb-next">&#8594;</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<section class="section hero" data-i="0">
+  <div class="hero-body">
+    <h1 class="hero-title reveal">Ben<br><em>Davie</em></h1>
+    <div class="hero-sub-row reveal d2">
+      <span class="hero-discipline">Designer &nbsp;&middot;&nbsp; Visual Artist &nbsp;&middot;&nbsp; Product Developer</span>
+      <span class="hero-scroll">Scroll &#8595;</span>
+    </div>
+  </div>
+  <div class="hero-photo" id="hero-photo-wrap" onclick="launchConfetti()" style="cursor:pointer"><img src="ben.jpg" alt="Ben Davie" loading="eager"></div>
+  <div class="hero-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="1">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" loading="eager" src="angel-tech.jpg" alt="Angel Tech"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">01 / 06</div>
+      <h2 class="proj-title reveal d2">Angel<br><em>Tech</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Game Design</span><span class="tag">Wearables</span><span class="tag">Fabrication</span><span class="tag">Narrative</span></div>
+      <p class="proj-desc reveal d4">A fully realised world built from concept to costume &mdash; an original game only viewable through a detachable acrylic lens on the helmet, and only playable through a wired Arduino connection. Paired with fabricated acrylic wings and a full reflective suit.</p>
+      <button class="proj-link reveal d5" onclick="openModal(0)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="2">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(1)"><video class="project-img" src="grit.mp4" autoplay muted loop playsinline></video></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">02 / 06</div>
+      <h2 class="proj-title reveal d2">The Grit<br><em>Social &amp; Brand</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Social Media</span><span class="tag">Marketing</span><span class="tag">Fashion</span><span class="tag">Brand Identity</span></div>
+      <p class="proj-desc reveal d4">Social media and creative work for The Grit &mdash; thriving within a team of designers across content strategy, campaign visuals, and an in-house clothing line. Learning to hold a strong creative voice inside a collaborative process.</p>
+      <button class="proj-link reveal d5" onclick="openModal(1)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="3">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" loading="eager" src="shaped-by-water.jpg" alt="Shaped by Water"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">03 / 06</div>
+      <h2 class="proj-title reveal d2">Shaped<br><em>by Water</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Installation</span><span class="tag">3D Render</span><span class="tag">Collaboration</span><span class="tag">Environment</span></div>
+      <p class="proj-desc reveal d4">A large-scale immersive installation exploring water as form-giver. Hands-on across the project &mdash; with primary responsibility for the projections and sound design. Created collaboratively, with concept, space, and world-building built together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank">Article</a></p>
+      <button class="proj-link reveal d5" onclick="openModal(2)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="4">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(3)"><video class="project-img" src="research.mp4" autoplay muted loop playsinline></video></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">04 / 06</div>
+      <h2 class="proj-title reveal d2">City<br><em>Scrapes</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Photography</span><span class="tag">Research</span><span class="tag">Public Art</span><span class="tag">Salt Lake City</span></div>
+      <p class="proj-desc reveal d4">A study on how people interact with sanctioned and unsanctioned art across Salt Lake City &mdash; examining what folklore forms around each, and how the public perceives and shapes the work. Includes interactive 3D models of documented sites. <a href="https://auxo.love/rock" target="_blank">Explore</a></p>
+      <button class="proj-link reveal d5" onclick="openModal(3)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="5">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(4)"><img class="project-img" loading="eager" src="keyboard-redesign-cover.jpg" alt="Keyboard Redesign"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">05 / 06</div>
+      <h2 class="proj-title reveal d2">Keyboard<br><em>Redesign</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Industrial Design</span><span class="tag">Hardware</span><span class="tag">UX</span></div>
+      <p class="proj-desc reveal d4">A teardown and redesign of an existing keyboard with ADA accessibility at its core &mdash; studying how the object works at a component level, then rebuilding it around an easily operable thumbwheel and an interface that works for a wider range of users.</p>
+      <button class="proj-link reveal d5" onclick="openModal(4)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="6">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" loading="eager" src="airbnb-redesign.jpg" alt="Airbnb Redesign" style="display:none"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">06 / 06</div>
+      <h2 class="proj-title reveal d2">Airbnb<br><em>Redesign</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">UI/UX</span><span class="tag">Product Design</span><span class="tag">Adobe</span></div>
+      <p class="proj-desc reveal d4">A redesign of the Airbnb app experience page, presented at Adobe. Expanded on existing functionality &mdash; adding keyword search, refined filtering, and other features to make discovery more intuitive. <a href="https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/" target="_blank">Article</a></p>
+      <button class="proj-link reveal d5" onclick="openModal(5)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section contact" data-i="7">
+  <div class="contact-inner">
+    <div class="contact-label reveal">Let's talk</div>
+    <h2 class="contact-title reveal d2">Get in<br><em>touch</em></h2>
+    <a href="/cdn-cgi/l/email-protection#d5b7b0bbbfbcb1b4a3bcb095b2b8b4bcb9fbb6bab8" class="contact-link reveal d3"><span class="__cf_email__" data-cfemail="9efcfbf0f4f7faffe8f7fbdef9f3fff7f2b0fdf1f3">[email&#160;protected]</span> &nbsp;&#8594;</a>
+    <a href="tel:+14356806264" class="contact-link reveal d4">+1 435 680 6264 &nbsp;&#8594;</a>
+    <a href="https://www.instagram.com/benauxo" target="_blank" class="contact-link reveal d5">@benauxo &nbsp;&#8594;</a>
+  </div>
+  <div class="contact-footer">
+    <span class="contact-copy">&#169; 2026 Ben Davie</span>
+    <span class="contact-copy">All rights reserved</span>
+  </div>
+</section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function tryNext(img, fallbacks) {
+  var i = parseInt(img.dataset.try || 0);
+  if (i < fallbacks.length) {
+    img.dataset.try = i + 1;
+    img.src = fallbacks[i];
+  } else {
+    img.style.display = 'none';
+  }
+}
+
+var projects = [
+  {num:'01 / 06', title:'Angel<br><em>Tech</em>', plain:'Angel Tech',
+   media:[
+     {type:'img', srcs:['angel-tech.jpg']},
+     {type:'img', srcs:['angel-tech-2.jpg']},
+     {type:'img', srcs:['angel-tech-3.jpg']},
+     {type:'img', srcs:['angel-tech-4.jpg']},
+     {type:'img', srcs:['angel-tech-5.jpg']},
+     {type:'img', srcs:['angel-tech-6.jpg']},
+     {type:'img', srcs:['angel-tech-7.jpg']}
+   ],
+   tags:['Game Design','Wearables','Fabrication','Narrative'],
+   desc:'A fully realised world built from concept to costume — an original game only viewable through a detachable acrylic lens on the helmet, and only playable through a wired Arduino connection. Paired with fabricated acrylic wings and a full reflective suit.',
+   link:''},
+  {num:'02 / 06', title:'The Grit<br><em>Social &amp; Brand</em>', plain:'The Grit',
+   media:[
+     {type:'video', srcs:['grit.mp4']},
+     {type:'img', srcs:['grit-social-2.jpg']},
+     {type:'img', srcs:['grit-social-3.jpg']},
+     {type:'img', srcs:['grit-social-4.jpg']},
+     {type:'img', srcs:['grit-social-5.jpg']},
+     {type:'img', srcs:['grit-social-6.jpg']},
+     {type:'img', srcs:['grit-social-7.jpg']},
+     {type:'img', srcs:['grit-social-8.jpg']},
+     {type:'img', srcs:['grit-social-9.jpg']}
+   ],
+   tags:['Social Media','Marketing','Fashion','Brand Identity'],
+   desc:'Social media and creative work for The Grit — thriving within a team of designers across content strategy, campaign visuals, and an in-house clothing line. Learning to hold a strong creative voice inside a collaborative process.',
+   link:''},
+  {num:'03 / 06', title:'Shaped<br><em>by Water</em>', plain:'Shaped by Water',
+   media:[
+     {type:'img', srcs:['shaped-by-water.jpg']},
+     {type:'img', srcs:['shaped-by-water-2.jpg']},
+     {type:'img', srcs:['shaped-by-water-3.jpg']},
+     {type:'img', srcs:['shaped-by-water-4.jpg']},
+     {type:'img', srcs:['shaped-by-water-5.jpg']}
+   ],
+   tags:['Installation','3D Render','Collaboration','Environment'],
+   desc:'A large-scale immersive installation exploring water as form-giver. Hands-on across the project — with primary responsibility for the projections and sound design, including going scuba diving to record underwater audio for the installation. Created collaboratively, with concept, space, and world-building built together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',
+   link:'https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-'},
+  {num:'04 / 06', title:'City<br><em>Scrapes</em>', plain:'City Scrapes',
+   media:[
+     {type:'video', srcs:['research.mp4']},
+     {type:'img', srcs:['city-scrapes-1.jpg']},
+     {type:'img', srcs:['city-scrapes-2.jpg']},
+     {type:'img', srcs:['city-scrapes-3.jpg']},
+     {type:'img', srcs:['city-scrapes-4.jpg']},
+     {type:'img', srcs:['city-scrapes-5.jpg']},
+     {type:'img', srcs:['city-scrapes-6.jpg']},
+     {type:'iframe', src:'https://sketchfab.com/models/7a27147c10bf4d01aaf386e11118dc7c/embed', title:'Rock — City Scrapes 3D Model'}
+   ],
+   tags:['Photography','Research','Public Art','Salt Lake City'],
+   desc:'A study on how people interact with sanctioned and unsanctioned art across Salt Lake City — examining what folklore forms around each, and how the public perceives and shapes the work. Includes interactive 3D models of documented sites. <a href="https://auxo.love/rock" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Explore</a>',
+   link:''},
+  {num:'05 / 06', title:'Keyboard<br><em>Redesign</em>', plain:'Keyboard Redesign',
+   media:[
+     {type:'img', srcs:['keyboard-redesign.jpg']},
+     {type:'img', srcs:['keyboard-redesign-2.jpg']},
+     {type:'img', srcs:['keyboard-redesign-3.jpg']},
+     {type:'img', srcs:['keyboard-redesign-4.jpg']},
+     {type:'img', srcs:['keyboard-redesign-5.jpg']},
+     {type:'img', srcs:['keyboard-redesign-cover.jpg']},
+     {type:'img', srcs:['keyboard-redesign-6.jpg']},
+     {type:'img', srcs:['keyboard-redesign-7.jpg']}
+   ],
+   tags:['Industrial Design','Hardware','UX'],
+   desc:'A teardown and redesign of an existing keyboard with ADA accessibility at its core — studying how the object works at a component level, then rebuilding it around an easily operable thumbwheel and an interface that works for a wider range of users.',
+   link:''},
+  {num:'06 / 06', title:'Airbnb<br><em>Redesign</em>', plain:'Airbnb Redesign',
+   media:[
+     {type:'img', srcs:['airbnb-redesign.jpg']},
+     {type:'img', srcs:['airbnb-redesign-2.jpg']},
+     {type:'img', srcs:['airbnb-redesign-3.jpg']}
+   ],
+   tags:['UI/UX','Product Design','Adobe'],
+   desc:'A redesign of the Airbnb app experience page, presented at Adobe. Expanded on existing functionality — adding keyword search, refined filtering, and other features to make discovery more intuitive. <a href="https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',
+   link:'https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/'}
+];
+
+function makeMediaEl(m, altText, onclick) {
+  if (m.type === 'video') {
+    var v = document.createElement('video');
+    v.src = m.srcs[0]; v.autoplay = true; v.muted = true; v.loop = true;
+    v.setAttribute('playsinline','');
+    v.style.cssText = 'width:100%;display:block;';
+    return v;
+  } else if (m.type === 'iframe') {
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'width:100%;position:relative;padding-bottom:56.25%;background:#111;border-radius:4px;overflow:hidden;';
+    var label = document.createElement('div');
+    label.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#666;font-size:11px;letter-spacing:.1em;';
+    label.textContent = 'LOADING 3D MODEL...';
+    wrap.appendChild(label);
+    var f = document.createElement('iframe');
+    f.src = m.src;
+    f.title = m.title || '3D Model';
+    f.setAttribute('frameborder','0');
+    f.setAttribute('allowfullscreen','');
+    f.setAttribute('mozallowfullscreen','true');
+    f.setAttribute('webkitallowfullscreen','true');
+    f.allow = 'autoplay; fullscreen; xr-spatial-tracking';
+    f.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;';
+    wrap.appendChild(f);
+    return wrap;
+  } else {
+    var img = document.createElement('img');
+    img.alt = altText;
+    img.style.cssText = 'width:100%;display:block;cursor:zoom-in;';
+    var i = 0;
+    img.onerror = function() {
+      i++;
+      if (i < m.srcs.length) { img.src = m.srcs[i]; }
+      else { img.style.display = 'none'; }
+    };
+    img.src = m.srcs[0];
+    if (onclick) img.onclick = onclick;
+    return img;
+  }
+}
+
+var modal = document.getElementById('modal');
+var currentMedia = [];
+
+function openModal(idx) {
+  var p = projects[idx];
+  document.getElementById('modal-title').textContent = p.plain;
+  document.getElementById('modal-num').textContent = p.num;
+  document.getElementById('modal-big-title').innerHTML = p.title;
+  document.getElementById('modal-desc').innerHTML = p.desc;
+  document.getElementById('modal-tags').innerHTML = p.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  var extLink = document.getElementById('modal-ext-link');
+  if (p.link) { extLink.href = p.link; extLink.classList.remove('hidden'); }
+  else { extLink.classList.add('hidden'); }
+  var gallery = document.getElementById('modal-gallery');
+  gallery.innerHTML = '';
+  currentMedia = p.media;
+  p.media.forEach(function(m, i) {
+    var el = makeMediaEl(m, p.plain, m.type === 'img' ? function(){ openLightbox(i); } : null);
+    gallery.appendChild(el);
+  });
+  modal.scrollTop = 0;
+  modal.classList.add('open');
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  modal.classList.remove('open');
+  document.documentElement.style.overflow = '';
+}
+document.getElementById('modal-close').addEventListener('click', closeModal);
+
+var lbIndex = 0;
+
+function openLightbox(i) {
+  lbIndex = i;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+}
+
+function renderLightbox() {
+  var m = currentMedia[lbIndex];
+  var wrap = document.getElementById('lb-media');
+  wrap.innerHTML = '';
+  if (m.type === 'video') {
+    var v = document.createElement('video');
+    v.src = m.srcs[0]; v.autoplay = true; v.muted = true; v.loop = true;
+    v.setAttribute('playsinline','');
+    v.style.cssText = 'max-width:90vw;max-height:90vh;display:block;';
+    wrap.appendChild(v);
+  } else {
+    var img = document.createElement('img');
+    img.style.cssText = 'max-width:90vw;max-height:90vh;display:block;object-fit:contain;';
+    var i = 0;
+    img.onerror = function() { i++; if(i < m.srcs.length) img.src = m.srcs[i]; };
+    img.src = m.srcs[0];
+    wrap.appendChild(img);
+  }
+  document.getElementById('lb-counter').textContent = (lbIndex+1) + ' / ' + currentMedia.length;
+  document.getElementById('lb-prev').style.opacity = lbIndex === 0 ? '0.2' : '1';
+  document.getElementById('lb-next').style.opacity = lbIndex === currentMedia.length-1 ? '0.2' : '1';
+}
+
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', function(){ if(lbIndex>0){ lbIndex--; renderLightbox(); } });
+document.getElementById('lb-next').addEventListener('click', function(){ if(lbIndex<currentMedia.length-1){ lbIndex++; renderLightbox(); } });
+document.getElementById('lightbox').addEventListener('click', function(e){ if(e.target===this) closeLightbox(); });
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('lightbox').classList.contains('open')) {
+    if (e.key==='ArrowLeft' && lbIndex>0){ lbIndex--; renderLightbox(); }
+    if (e.key==='ArrowRight' && lbIndex<currentMedia.length-1){ lbIndex++; renderLightbox(); }
+    if (e.key==='Escape') closeLightbox();
+  } else if (modal.classList.contains('open')) {
+    if (e.key==='Escape') closeModal();
+  }
+});
+
+
+function launchConfetti() {
+  var colors = ['#ff595e','#ffca3a','#6a4c93','#1982c4','#8ac926','#ff595e','#ffffff','#0e0e0e','#ff9f1c'];
+  var shapes = ['square','circle','strip'];
+  for (var i = 0; i < 140; i++) {
+    (function(i) {
+      setTimeout(function() {
+        var el = document.createElement('div');
+        var shape = shapes[Math.floor(Math.random()*shapes.length)];
+        var color = colors[Math.floor(Math.random()*colors.length)];
+        var size = Math.random()*10+6;
+        el.className = 'confetti-piece';
+        el.style.left = Math.random()*100+'vw';
+        el.style.top = '-20px';
+        el.style.width = shape==='strip' ? '4px' : size+'px';
+        el.style.height = shape==='strip' ? (size*3)+'px' : size+'px';
+        el.style.background = color;
+        el.style.borderRadius = shape==='circle' ? '50%' : '2px';
+        el.style.animationDuration = (Math.random()*2+1.5)+'s';
+        el.style.animationDelay = '0s';
+        document.body.appendChild(el);
+        setTimeout(function(){ el.remove(); }, 4000);
+      }, i * 12);
+    })(i);
+  }
+}
+var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring'),mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('.project-visual,button,a').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ring.style.width='54px';ring.style.height='54px';});
+  el.addEventListener('mouseleave',function(){ring.style.width='38px';ring.style.height='38px';});
+});
+
+var sections=document.querySelectorAll('.section');
+var dotsEl=document.getElementById('dots');
+var navIdx=document.getElementById('navIdx');
+sections.forEach(function(_,i){
+  var d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.addEventListener('click',function(){sections[i].scrollIntoView({behavior:'smooth'});});
+  dotsEl.appendChild(d);
+});
+var allDots=document.querySelectorAll('.dot');
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var i=parseInt(e.target.dataset.i);
+    allDots.forEach(function(d,j){d.classList.toggle('active',j===i);});
+    navIdx.textContent=String(i+1).padStart(2,'0')+' / '+sections.length;
+    e.target.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  });
+},{threshold:0.05});
+sections.forEach(function(s){io.observe(s);});
+// Force all reveals visible immediately — don't wait for scroll
+document.querySelectorAll('.reveal').forEach(function(el){
+  var rect=el.closest('.section')?el.closest('.section').getBoundingClientRect():null;
+  if(!rect||rect.top<window.innerHeight)el.classList.add('in');
+});
+// Also always force hero
+document.querySelectorAll('.section[data-i="0"] .reveal').forEach(function(el){el.classList.add('in');});
+</script>
+</body>
+</html><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
