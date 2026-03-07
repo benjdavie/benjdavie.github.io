@@ -171,6 +171,297 @@ video.project-img{transition:transform .7s}
 
 <section class="section project" data-i="4">
   <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(3)"><video class="project-img" src="grit.mp4" autoplay muted loop playsinline></video></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">04 / 06</div>
+      <h2 class="proj-title reveal d2">The Grit<br><em>Social &amp; Brand</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Social Media</span><span class="tag">Marketing</span><span class="tag">Fashion</span><span class="tag">Brand Identity</span></div>
+      <p class="proj-desc reveal d4">Creative direction and social media marketing for The Grit &mdash; spanning content strategy, campaign visuals, and an in-house clothing line. Building a brand voice from the ground up.</p>
+      <button class="proj-link reveal d5" onclick="openModal(3)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="5">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(4)"><video class="project-img" src="research.mp4" autoplay muted loop playsinline></video></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">05 / 06</div>
+      <h2 class="proj-title reveal d2">City<br><em>Scrapes</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Photography</span><span class="tag">Research</span><span class="tag">Public Art</span><span class="tag">Salt Lake City</span></div>
+      <p class="proj-desc reveal d4">A study on how people interact with artwork in public spaces across Salt Lake City &mdash; observing, documenting, and questioning the relationship between art, environment, and the everyday.</p>
+      <button class="proj-link reveal d5" onclick="openModal(4)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="6">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(5)"><img class="project-img" src="keyboard-redesign.jpg" alt="Keyboard Redesign"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">06 / 06</div>
+      <h2 class="proj-title reveal d2">Keyboard<br><em>Redesign</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Industrial Design</span><span class="tag">Hardware</span><span class="tag">UX</span></div>
+      <p class="proj-desc reveal d4">A ground-up rethink of the keyboard &mdash; form, layout, and feel. Questioning assumptions about how we interact with the most-used tool on a desk.</p>
+      <button class="proj-link reveal d5" onclick="openModal(5)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section contact" data-i="7">
+  <div class="contact-inner">
+    <div class="contact-label reveal">Let's talk</div>
+    <h2 class="contact-title reveal d2">Get in<br><em>touch</em></h2>
+    <a href="mailto:benjidavie@gmail.com" class="contact-link reveal d3">benjidavie@gmail.com &nbsp;&#8594;</a>
+    <a href="tel:+14356806264" class="contact-link reveal d4">+1 435 680 6264 &nbsp;&#8594;</a>
+  </div>
+  <div class="contact-footer">
+    <span class="contact-copy">&#169; 2026 Ben Davie</span>
+    <span class="contact-copy">All rights reserved</span>
+  </div>
+</section>
+
+<script>
+var projects=[
+  {num:'01 / 06',title:'Angel<br><em>Tech</em>',plain:'Angel Tech',img:'angel-tech.jpg',tags:['Game Design','Wearables','Fabrication','Narrative'],desc:'A fully realised world — a playable game paired with physical acrylic wings, a game controller helmet, and a full reflective suit. Built with a complete original storyline from concept to costume.',link:''},
+  {num:'02 / 06',title:'Airbnb<br><em>Redesign</em>',plain:'Airbnb Redesign',img:'airbnb-redesign.jpg',tags:['UI/UX','Product Design','Adobe'],desc:'A ground-up redesign of the Airbnb experience, presented at Adobe. Rethinking how people discover, trust, and book — from information architecture through to polished interface. <a href="https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',link:'https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/'},
+  {num:'03 / 06',title:'Shaped<br><em>by Water</em>',plain:'Shaped by Water',img:'shaped-by-water.jpg',tags:['Installation','3D Render','Collaboration','Environment'],desc:'A large-scale immersive installation exploring water as form-giver. Includes a full photorealistic 3D render of a lake environment. Created as a group project — concept, space, and world-building working together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank" style="color:#2563eb;border-bottom:1px solid #2563eb;text-decoration:none">Article</a>',link:'https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-'},
+  {num:'04 / 06',title:'The Grit<br><em>Social &amp; Brand</em>',plain:'The Grit',video:'grit.mp4',tags:['Social Media','Marketing','Fashion','Brand Identity'],desc:'Creative direction and social media marketing for The Grit — spanning content strategy, campaign visuals, and an in-house clothing line. Building a brand voice from the ground up.',link:''},
+  {num:'05 / 06',title:'City<br><em>Scrapes</em>',plain:'City Scrapes',video:'research.mp4',tags:['Photography','Research','Public Art','Salt Lake City'],desc:'A study on how people interact with artwork in public spaces across Salt Lake City — observing, documenting, and questioning the relationship between art, environment, and the everyday.',link:''},
+  {num:'06 / 06',title:'Keyboard<br><em>Redesign</em>',plain:'Keyboard Redesign',img:'keyboard-redesign.jpg',tags:['Industrial Design','Hardware','UX'],desc:'A ground-up rethink of the keyboard — form, layout, and feel. Questioning assumptions about how we interact with the most-used tool on a desk.',link:''}
+];
+
+var modal=document.getElementById('modal');
+function openModal(i){
+  var p=projects[i];
+  document.getElementById('modal-title').textContent=p.plain;
+  document.getElementById('modal-num').textContent=p.num;
+  document.getElementById('modal-big-title').innerHTML=p.title;
+  document.getElementById('modal-desc').innerHTML=p.desc;
+  document.getElementById('modal-tags').innerHTML=p.tags.map(function(t){return '<span class="tag">'+t+'</span>';}).join('');
+  var media=document.getElementById('modal-media');
+  if(p.video){
+    media.innerHTML='<video src="'+p.video+'" autoplay muted loop playsinline style="width:100%;display:block;"></video>';
+  } else {
+    media.innerHTML='<img src="'+p.img+'" alt="'+p.plain+'" style="width:100%;display:block;">';
+  }
+  var el=document.getElementById('modal-ext-link');
+  if(p.link){el.href=p.link;el.classList.remove('hidden');}else{el.classList.add('hidden');}
+  modal.scrollTop=0;
+  modal.classList.add('open');
+  document.documentElement.style.overflow='hidden';
+}
+function closeModal(){modal.classList.remove('open');document.documentElement.style.overflow='';}
+document.getElementById('modal-close').addEventListener('click',closeModal);
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+
+var cur=document.getElementById('cur'),ring=document.getElementById('cur-ring'),mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick);})();
+document.querySelectorAll('.project-visual,button,a').forEach(function(el){
+  el.addEventListener('mouseenter',function(){ring.style.width='54px';ring.style.height='54px';});
+  el.addEventListener('mouseleave',function(){ring.style.width='38px';ring.style.height='38px';});
+});
+
+var sections=document.querySelectorAll('.section');
+var dotsEl=document.getElementById('dots');
+var navIdx=document.getElementById('navIdx');
+sections.forEach(function(_,i){
+  var d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.addEventListener('click',function(){sections[i].scrollIntoView({behavior:'smooth'});});
+  dotsEl.appendChild(d);
+});
+var allDots=document.querySelectorAll('.dot');
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var i=parseInt(e.target.dataset.i);
+    allDots.forEach(function(d,j){d.classList.toggle('active',j===i);});
+    navIdx.textContent=String(i+1).padStart(2,'0')+' / '+sections.length;
+    e.target.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});
+  });
+},{threshold:0.15});
+sections.forEach(function(s){io.observe(s);});
+document.querySelectorAll('.section[data-i="0"] .reveal').forEach(function(el){el.classList.add('in');});
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ben Davie &mdash; Portfolio</title>
+<link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@300,400,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--white:#fafaf8;--off:#f2f1ee;--black:#0e0e0e;--mid:#888;--light:#ccc;--sans:'Neue Haas Grotesk Display Pro','Helvetica Neue','Cabinet Grotesk',sans-serif;--mono:'DM Mono',monospace}
+html{scroll-snap-type:y mandatory;overflow-y:scroll;overflow-x:hidden}
+body{background:var(--white);color:var(--black);font-family:var(--mono);cursor:none}
+#cur{position:fixed;width:14px;height:14px;background:white;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference}
+#cur-ring{position:fixed;width:38px;height:38px;border:1px solid white;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .25s,height .25s}
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:28px 52px;pointer-events:none}
+.nav-name{font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black)}
+.nav-index{font-family:var(--mono);font-size:.58rem;letter-spacing:.12em;color:var(--mid)}
+.scroll-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:500}
+.dot{width:4px;height:4px;background:var(--light);border-radius:50%;cursor:pointer;transition:all .4s}
+.dot.active{background:var(--black);transform:scale(1.8)}
+.section{height:100vh;width:100%;scroll-snap-align:start;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero{background:var(--white);flex-direction:column;padding:0 52px;align-items:flex-start}
+.hero-body{width:55%;max-width:600px;position:relative;z-index:1}
+.hero-photo{position:absolute;top:0;right:0;width:45%;height:100%;overflow:hidden}
+.hero-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-title{font-family:var(--sans);font-weight:300;font-size:clamp(5rem,12vw,10.5rem);line-height:.91;letter-spacing:-.035em;color:var(--black)}
+.hero-title em{font-style:normal;font-weight:300;color:var(--mid)}
+.hero-sub-row{display:flex;align-items:flex-end;justify-content:space-between;width:100%;margin-top:52px;padding-bottom:10px;border-bottom:1px solid var(--light)}
+.hero-discipline{font-family:var(--mono);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mid)}
+.hero-scroll{font-family:var(--mono);font-size:.58rem;letter-spacing:.15em;color:var(--light);animation:nudge 2.8s ease-in-out infinite}
+.hero-arrow{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;animation:blink-fade 2.4s ease-in-out infinite;pointer-events:none}
+.hero-arrow svg{width:20px;height:20px;stroke:var(--black);fill:none;stroke-width:1.5}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+@keyframes blink-fade{0%,100%{opacity:.15}50%{opacity:.7}}
+.project{background:var(--white);padding:0 52px}
+.project:nth-child(even){background:var(--off)}
+.project-inner{width:100%;max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.project:nth-child(odd) .project-inner{direction:ltr}
+.project:nth-child(even) .project-inner{direction:rtl}
+.project:nth-child(even) .project-inner>*{direction:ltr}
+.project-visual{aspect-ratio:4/3;background:#e8e7e4;overflow:hidden;position:relative;cursor:pointer}
+.project:nth-child(even) .project-visual{background:#dddcda}
+.project-img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+video.project-img{transition:transform .7s}
+.project-visual:hover .project-img{transform:scale(1.02)}
+.project-text{display:flex;flex-direction:column}
+.proj-num{font-family:var(--mono);font-size:.52rem;letter-spacing:.28em;color:var(--light);text-transform:uppercase;margin-bottom:20px}
+.proj-title{font-family:var(--sans);font-weight:300;font-size:clamp(2.2rem,3.8vw,3.4rem);line-height:1.02;letter-spacing:-.03em;color:var(--black);margin-bottom:26px}
+.proj-title em{font-style:normal;font-weight:300;color:var(--mid)}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.tag{font-family:var(--mono);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border:1px solid var(--light);color:var(--mid)}
+.proj-desc{font-family:var(--mono);font-size:.68rem;line-height:1.95;color:var(--mid);margin-bottom:34px;max-width:360px;font-weight:300}
+.proj-desc a{color:#2563eb;text-decoration:none;border-bottom:1px solid #2563eb}
+.proj-link{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none;padding-bottom:6px;border-bottom:1px solid var(--black);width:fit-content;transition:gap .35s,color .25s,border-color .25s;background:none;border-top:none;border-left:none;border-right:none;cursor:pointer}
+.proj-link:hover{gap:22px;color:var(--mid);border-color:var(--mid)}
+.section-line{position:absolute;bottom:0;left:52px;right:52px;height:1px;background:var(--light)}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.18s}.d3{transition-delay:.28s}.d4{transition-delay:.4s}.d5{transition-delay:.52s}
+.contact{background:var(--black);flex-direction:column;align-items:flex-start;padding:0 52px}
+.contact-inner{max-width:1100px;width:100%}
+.contact-label{font-family:var(--mono);font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:36px}
+.contact-title{font-family:var(--sans);font-weight:300;font-size:clamp(4rem,10vw,9rem);line-height:.91;letter-spacing:-.035em;color:var(--white);margin-bottom:48px}
+.contact-title em{font-style:normal;color:rgba(255,255,255,.35)}
+.contact-link{display:inline-flex;align-items:center;gap:16px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--white);text-decoration:none;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.2);transition:gap .35s,border-color .3s;margin-bottom:16px}
+.contact-link:hover{gap:26px;border-color:rgba(255,255,255,.6)}
+.contact-footer{position:absolute;bottom:28px;left:52px;right:52px;display:flex;justify-content:space-between}
+.contact-copy{font-family:var(--mono);font-size:.52rem;letter-spacing:.2em;color:rgba(255,255,255,.18)}
+.modal{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;background:var(--white);transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1);overflow-y:auto}
+.modal.open{transform:translateY(0)}
+.modal-header{position:sticky;top:0;background:var(--white);z-index:10;display:flex;justify-content:space-between;align-items:center;padding:24px 52px;border-bottom:1px solid var(--light)}
+.modal-title{font-family:var(--sans);font-weight:300;font-size:1.1rem;letter-spacing:-.02em;color:var(--black)}
+.modal-close{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mid);background:none;border:none;cursor:pointer;padding:8px 0;transition:color .2s}
+.modal-close:hover{color:var(--black)}
+.modal-body{padding:52px;max-width:1100px;width:100%;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.modal-img-wrap{position:sticky;top:96px}
+.modal-img-wrap img,.modal-img-wrap video{width:100%;display:block;object-fit:cover}
+.modal-num{font-family:var(--mono);font-size:.52rem;letter-spacing:.28em;color:var(--light);text-transform:uppercase;margin-bottom:16px}
+.modal-big-title{font-family:var(--sans);font-weight:300;font-size:clamp(2rem,4vw,3.5rem);line-height:.95;letter-spacing:-.03em;color:var(--black);margin-bottom:28px}
+.modal-big-title em{font-style:normal;color:var(--mid)}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px}
+.modal-desc{font-family:var(--mono);font-size:.7rem;line-height:2;color:var(--mid);margin-bottom:36px;font-weight:300}
+.modal-desc a{color:#2563eb;text-decoration:none;border-bottom:1px solid #2563eb}
+.modal-ext-link{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--black);text-decoration:none;padding-bottom:6px;border-bottom:1px solid var(--black);transition:gap .3s,color .2s}
+.modal-ext-link:hover{gap:20px;color:var(--mid)}
+.modal-ext-link.hidden{display:none}
+@media(max-width:768px){nav,.hero,.project,.contact{padding:0 24px}nav{padding-top:20px}.section-line{left:24px;right:24px}.project-inner{grid-template-columns:1fr;gap:28px;direction:ltr!important}.project-inner>*{direction:ltr!important}.contact-footer{left:24px;right:24px}.modal-header{padding:20px 24px}.modal-body{grid-template-columns:1fr;padding:32px 24px;gap:32px}.modal-img-wrap{position:static}.hero-photo{width:40%}.hero-body{width:60%}}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<nav>
+  <span class="nav-name">Ben Davie</span>
+  <span class="nav-index" id="navIdx">01 / 08</span>
+</nav>
+<div class="scroll-dots" id="dots"></div>
+
+<div class="modal" id="modal">
+  <div class="modal-header">
+    <span class="modal-title" id="modal-title"></span>
+    <button class="modal-close" id="modal-close">&#x2715;&nbsp; Close</button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-img-wrap" id="modal-media"></div>
+    <div class="modal-info">
+      <div class="modal-num" id="modal-num"></div>
+      <h2 class="modal-big-title" id="modal-big-title"></h2>
+      <div class="modal-tags" id="modal-tags"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <a class="modal-ext-link hidden" id="modal-ext-link" href="#" target="_blank">Visit project &nbsp;&#8594;</a>
+    </div>
+  </div>
+</div>
+
+<section class="section hero" data-i="0">
+  <div class="hero-body">
+    <h1 class="hero-title reveal">Ben<br><em>Davie</em></h1>
+    <div class="hero-sub-row reveal d2">
+      <span class="hero-discipline">Designer &nbsp;&middot;&nbsp; Visual Artist &nbsp;&middot;&nbsp; Creative Technologist</span>
+      <span class="hero-scroll">Scroll &#8595;</span>
+    </div>
+  </div>
+  <div class="hero-photo"><img src="ben.jpg" alt="Ben Davie"></div>
+  <div class="hero-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="1">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(0)"><img class="project-img" src="angel-tech.jpg" alt="Angel Tech"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">01 / 06</div>
+      <h2 class="proj-title reveal d2">Angel<br><em>Tech</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Game Design</span><span class="tag">Wearables</span><span class="tag">Fabrication</span><span class="tag">Narrative</span></div>
+      <p class="proj-desc reveal d4">A fully realised world &mdash; a playable game paired with physical acrylic wings, a game controller helmet, and a full reflective suit. Built with a complete original storyline from concept to costume.</p>
+      <button class="proj-link reveal d5" onclick="openModal(0)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="2">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(1)"><img class="project-img" src="airbnb-redesign.jpg" alt="Airbnb Redesign"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">02 / 06</div>
+      <h2 class="proj-title reveal d2">Airbnb<br><em>Redesign</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">UI/UX</span><span class="tag">Product Design</span><span class="tag">Adobe</span></div>
+      <p class="proj-desc reveal d4">A ground-up redesign of the Airbnb experience, presented at Adobe. Rethinking how people discover, trust, and book &mdash; from information architecture through to polished interface. <a href="https://www.cap.utah.edu/mdd/where-academia-meets-industry-digital-design-students-present-at-adobe/" target="_blank">Article</a></p>
+      <button class="proj-link reveal d5" onclick="openModal(1)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="3">
+  <div class="project-inner">
+    <div class="project-visual reveal" onclick="openModal(2)"><img class="project-img" src="shaped-by-water.jpg" alt="Shaped by Water"></div>
+    <div class="project-text">
+      <div class="proj-num reveal d1">03 / 06</div>
+      <h2 class="proj-title reveal d2">Shaped<br><em>by Water</em></h2>
+      <div class="proj-tags reveal d3"><span class="tag">Installation</span><span class="tag">3D Render</span><span class="tag">Collaboration</span><span class="tag">Environment</span></div>
+      <p class="proj-desc reveal d4">A large-scale immersive installation exploring water as form-giver. Includes a full photorealistic 3D render of a lake environment. Created as a group project &mdash; concept, space, and world-building working together. <a href="https://www.cap.utah.edu/mdd/shaped-by-water-a-salt-lake-immersive-" target="_blank">Article</a></p>
+      <button class="proj-link reveal d5" onclick="openModal(2)">View project &nbsp;&#8594;</button>
+    </div>
+  </div>
+  <div class="section-line"></div>
+</section>
+
+<section class="section project" data-i="4">
+  <div class="project-inner">
     <div class="project-visual reveal" onclick="openModal(3)"><img class="project-img" src="grit-social.jpg" alt="The Grit"></div>
     <div class="project-text">
       <div class="proj-num reveal d1">04 / 06</div>
