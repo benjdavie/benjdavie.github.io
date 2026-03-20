@@ -3,168 +3,473 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AUXO</title>
+  <title>05.01</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Aldrich&display=swap" rel="stylesheet">
   <style>
-    body {
-      position: relative;
-      height: 100vh;
-      margin: 0;
-      background: url('water.gif') no-repeat center center fixed;
-      background-size: cover;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
       overflow: hidden;
+      font-family: 'Share Tech Mono', monospace;
+      cursor: none;
     }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      padding: 20px;
-      text-align: center;
+    /* ── sky bg ── */
+    .bg {
+      position: fixed; inset: 0; z-index: 0;
+      background: linear-gradient(160deg, #c9e8f8 0%, #a0cbee 35%, #7ab8e8 65%, #c6dff5 100%);
     }
 
-    ul {
-      padding: 0;
-      list-style: none;
-      margin-top: 10px;
+    /* ── globe canvas ── */
+    #globe {
+      position: fixed; inset: 0; z-index: 1;
+      width: 100%; height: 100%;
     }
 
-    li {
-      margin-bottom: 10px;
-      opacity: 0;
-      animation: fade-in 0.5s forwards;
+    /* ── grain ── */
+    .grain {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
     }
 
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
+    /* ── shard SVG ── */
+    .scene {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      z-index: 3; pointer-events: none;
     }
 
-    a {
-      font-size: 40px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-      z-index: 2;
+    /* ── lime bars ── */
+    .lime-bar {
+      position: fixed; z-index: 4; pointer-events: none;
+      background: #7fff00;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.18) 1.2px, transparent 1.2px);
+      background-size: 7px 7px;
+    }
+    .lb1 { left:-5%; top:46%; width:72%; height:52px; transform: rotate(-6deg); }
+    .lb2 { right:-5%; top:52%; width:58%; height:44px; transform: rotate(-6deg); }
+    .lb3 { left:10%; bottom:18%; width:40%; height:36px; transform: rotate(-6deg); }
+
+    /* ── timer ── */
+    .timer-wrap {
+      position: fixed; z-index: 20;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -42%);
+      display: flex; flex-direction: column; align-items: center;
     }
 
-    a:hover {
-      animation: strobe 0.1s infinite;
+    .dot-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(10px, 1.6vw, 15px);
+      letter-spacing: 0.45em;
+      text-transform: uppercase;
+      color: #0a0c0a;
+      background: rgba(255,255,255,0.55);
+      border: 2px solid rgba(0,0,0,0.12);
+      padding: 5px 18px 4px;
+      backdrop-filter: blur(6px);
+      margin-bottom: -2px;
     }
 
-    @keyframes strobe {
-      0% { color: white; }
-      50% { color: black; }
-      100% { color: white; }
+    .units { display: flex; align-items: flex-end; }
+
+    .unit { display: flex; flex-direction: column; align-items: center; }
+
+    .unit-num {
+      font-family: 'Aldrich', sans-serif;
+      font-size: clamp(62px, 13vw, 170px);
+      line-height: 1; font-weight: 400;
+      letter-spacing: -0.02em;
+      color: #eaf4ff;
+      text-shadow: 0 2px 0 rgba(0,0,0,0.18), 0 0 40px rgba(255,255,255,0.35), 2px 2px 0 rgba(90,180,255,0.3);
+      -webkit-text-stroke: 1.5px rgba(0,0,0,0.22);
     }
 
-    .footer {
-      font-size: 12px;
-      margin-top: 20px;
-      color: white;
-      opacity: 0;
-      animation: fade-in 0.4s forwards;
-      animation-delay: 1.3s;
-      z-index: 2;
+    .unit-label {
+      font-size: clamp(8px, 1.1vw, 11px);
+      letter-spacing: 0.5em; text-transform: uppercase;
+      color: #0a0c0a;
+      background: #7fff00;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.2) 1px, transparent 1px);
+      background-size: 6px 6px;
+      padding: 3px 10px 2px; margin-top: -4px;
+      font-family: 'Share Tech Mono', monospace;
     }
 
-    #snow-container {
-      position: fixed;
-      top: 0;
-      left: 0;
+    .sep {
+      font-family: 'Aldrich', sans-serif;
+      font-size: clamp(40px, 8vw, 110px);
+      line-height: 1; color: rgba(255,255,255,0.5);
+      padding: 0 4px 28px;
+      -webkit-text-stroke: 1px rgba(0,0,0,0.15);
+    }
+
+    .artist-float {
+      position: fixed; z-index: 20;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(9px, 1.2vw, 12px);
+      letter-spacing: 0.4em; text-transform: uppercase;
+      color: rgba(10,12,10,0.65);
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(4px);
+      border: 1.5px solid rgba(255,255,255,0.6);
+      padding: 4px 12px;
+    }
+    .af-tl { top: 58px; left: 52px; }
+    .af-br { bottom: 60px; right: 52px; }
+
+    .date-tag {
+      position: fixed; z-index: 20;
+      bottom: 62px; left: 50%; transform: translateX(-50%);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(9px, 1.1vw, 11px);
+      letter-spacing: 0.55em; text-transform: uppercase;
+      color: rgba(10,12,10,0.5);
+      background: rgba(255,255,255,0.35);
+      padding: 3px 14px;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(4px); white-space: nowrap;
+    }
+
+    /* ── rock cursor ── */
+    #cursor {
+      position: fixed; z-index: 9999;
       pointer-events: none;
-      z-index: 1;
+      width: 38px; height: 38px;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+      transition: transform 0.05s linear;
+      filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.35));
     }
 
-    .music-editing-link {
-      margin-top: 20px;
-      color: white;
-      font-size: 16px;
-      text-decoration: none;
-      font-weight: bold;
+    /* ── floating shard animation ── */
+    @keyframes floatA {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      33%      { transform: translateY(-18px) rotate(3deg); }
+      66%      { transform: translateY(10px) rotate(-2deg); }
     }
-
-    .music-editing-link:hover {
-      color: yellow;
+    @keyframes floatB {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      40%      { transform: translateY(14px) rotate(-4deg); }
+      80%      { transform: translateY(-10px) rotate(2deg); }
     }
+    @keyframes floatC {
+      0%,100% { transform: translateY(0px) rotate(0deg); }
+      50%      { transform: translateY(-22px) rotate(5deg); }
+    }
+    .fa { animation: floatA 7s ease-in-out infinite; }
+    .fb { animation: floatB 9s ease-in-out infinite; }
+    .fc { animation: floatC 11s ease-in-out infinite; }
+    .fd { animation: floatA 13s ease-in-out infinite reverse; }
+    .fe { animation: floatB 8s ease-in-out infinite 2s; }
+    .ff { animation: floatC 10s ease-in-out infinite 4s; }
   </style>
 </head>
 <body>
-  <div class="content">
-    <ul>
-      <li><a href="https://ffm.to/circa">LISTEN TO AUXO</a></li> 
-      <li style="animation-delay: 0.3s;"><a href="https://www.instagram.com/benauxo/">INSTAGRAM</a></li>
-      <li style="animation-delay: 0.6s;"><a href="https://www.youtube.com/channel/UCe62ClyuCL4p-BwABEvnmMw">YOUTUBE</a></li>
-      <li style="animation-delay: 0.75s;"><a href="https://soundcloud.com/benauxo">SOUNDCLOUD</a></li>
-      <li style="animation-delay: 0.9s;"><a href="https://benauxo.bandcamp.com/album/auxiliary">MERCH</a></li>
-    </ul>
 
-    <div class="footer">
-      SLCDNB RECORDS INC
+<div class="bg"></div>
+<canvas id="globe"></canvas>
+<div class="grain"></div>
+
+<!-- floating shards SVG -->
+<svg class="scene" viewBox="0 0 1000 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="foil1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.7"/>
+      <stop offset="40%"  stop-color="#b8d8f0" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#7fb8e8" stop-opacity="0.3"/>
+    </linearGradient>
+    <linearGradient id="foil2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#d0ecff" stop-opacity="0.6"/>
+      <stop offset="60%"  stop-color="#ffffff" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#a0ccee" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="foil3" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%"   stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#6aaad8" stop-opacity="0.25"/>
+    </linearGradient>
+    <linearGradient id="limeG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#7fff00" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#5edb00" stop-opacity="0.85"/>
+    </linearGradient>
+    <filter id="blur1"><feGaussianBlur stdDeviation="1.4"/></filter>
+    <style>.sh{stroke-width:1.2;stroke-linejoin:round}.gh{fill:none;stroke-width:0.8}</style>
+  </defs>
+
+  <!-- large bg shards (static, blurred) -->
+  <polygon class="sh" points="60,20 340,80 280,240 -40,180" fill="url(#foil1)" stroke="rgba(255,255,255,0.7)" filter="url(#blur1)"/>
+  <polygon class="sh" points="680,10 980,60 940,200 700,150" fill="url(#foil2)" stroke="rgba(255,255,255,0.6)" filter="url(#blur1)"/>
+  <polygon class="sh" points="150,580 420,560 380,720 80,700" fill="url(#foil1)" stroke="rgba(255,255,255,0.5)" filter="url(#blur1)"/>
+  <polygon class="sh" points="700,620 980,590 1010,760 680,770" fill="url(#foil2)" stroke="rgba(255,255,255,0.55)" filter="url(#blur1)"/>
+
+  <!-- floating animated shards -->
+  <g class="fa"><polygon class="sh" points="200,60 310,40 350,130 220,160 170,110" fill="url(#foil3)" stroke="rgba(255,255,255,0.8)"/></g>
+  <g class="fb"><polygon class="sh" points="620,80 740,50 780,140 660,170 600,120" fill="url(#foil1)" stroke="rgba(255,255,255,0.75)"/></g>
+  <g class="fc"><polygon class="sh" points="50,300 180,270 200,380 60,400" fill="url(#foil2)" stroke="rgba(255,255,255,0.65)"/></g>
+  <g class="fd"><polygon class="sh" points="820,280 950,260 970,360 840,380" fill="url(#foil3)" stroke="rgba(255,255,255,0.7)"/></g>
+  <g class="fe"><polygon class="sh" points="300,680 430,660 450,760 310,775" fill="url(#foil1)" stroke="rgba(255,255,255,0.6)"/></g>
+  <g class="ff"><polygon class="sh" points="600,700 720,680 740,770 590,780" fill="url(#foil2)" stroke="rgba(255,255,255,0.65)"/></g>
+
+  <g class="fb"><polygon class="sh" points="130,140 190,120 210,175 155,185 120,160" fill="url(#foil3)" stroke="rgba(255,255,255,0.9)"/></g>
+  <g class="fa"><polygon class="sh" points="750,100 810,85 830,135 770,148" fill="url(#foil1)" stroke="rgba(255,255,255,0.85)"/></g>
+  <g class="fc"><polygon class="sh" points="30,460 90,445 100,490 40,500" fill="url(#foil2)" stroke="rgba(255,255,255,0.8)"/></g>
+  <g class="fd"><polygon class="sh" points="880,420 940,405 950,455 890,468" fill="url(#foil3)" stroke="rgba(255,255,255,0.85)"/></g>
+  <g class="fe"><polygon class="sh" points="430,30 490,18 500,65 440,72" fill="url(#foil1)" stroke="rgba(255,255,255,0.9)"/></g>
+  <g class="ff"><polygon class="sh" points="480,750 550,735 560,785 490,792" fill="url(#foil2)" stroke="rgba(255,255,255,0.8)"/></g>
+  <g class="fa"><polygon class="sh" points="240,480 295,465 305,510 248,520" fill="url(#foil3)" stroke="rgba(255,255,255,0.75)"/></g>
+  <g class="fb"><polygon class="sh" points="700,480 755,468 762,512 705,524" fill="url(#foil1)" stroke="rgba(255,255,255,0.8)"/></g>
+
+  <!-- ghost outlines floating -->
+  <g class="fc"><polygon class="gh" points="100,200 220,170 260,280 130,300" stroke="rgba(255,255,255,0.45)"/></g>
+  <g class="fd"><polygon class="gh" points="750,200 860,175 880,270 760,290" stroke="rgba(255,255,255,0.4)"/></g>
+  <g class="fa"><polygon class="gh" points="350,560 460,545 470,630 355,640" stroke="rgba(255,255,255,0.35)"/></g>
+  <g class="fb"><polygon class="gh" points="540,560 650,545 660,630 545,640" stroke="rgba(255,255,255,0.4)"/></g>
+  <g class="fe"><polygon class="gh" points="310,120 360,108 370,148 318,158" stroke="rgba(255,255,255,0.5)"/></g>
+  <g class="ff"><polygon class="gh" points="630,130 680,118 688,155 636,165" stroke="rgba(255,255,255,0.5)"/></g>
+  <g class="fc"><polygon class="gh" points="55,550 105,540 110,575 60,582" stroke="rgba(255,255,255,0.45)"/></g>
+  <g class="fd"><polygon class="gh" points="895,540 940,530 945,568 898,574" stroke="rgba(255,255,255,0.45)"/></g>
+
+  <!-- lime bars -->
+  <polygon points="60,390 680,330 720,415 20,480" fill="url(#limeG)" opacity="0.92"/>
+  <polygon points="400,400 1040,345 1050,420 380,475" fill="url(#limeG)" opacity="0.88"/>
+  <polygon points="100,640 520,600 535,650 95,690" fill="#7fff00" opacity="0.75"/>
+
+  <!-- lime shard fragments floating -->
+  <g class="fb"><polygon class="sh" points="520,310 600,295 615,350 528,362" fill="#7fff00" stroke="#5edb00" opacity="0.85"/></g>
+  <g class="fa"><polygon class="sh" points="50,500 130,485 140,535 55,546" fill="#7fff00" stroke="#5edb00" opacity="0.7"/></g>
+  <g class="fc"><polygon class="sh" points="850,500 930,486 938,535 856,548" fill="#7fff00" stroke="#5edb00" opacity="0.72"/></g>
+  <g class="fd"><polygon class="sh" points="380,720 450,708 458,755 386,764" fill="#7fff00" stroke="#5edb00" opacity="0.65"/></g>
+
+  <!-- left tree -->
+  <g opacity="0.22" fill="none" stroke="#1a2a1a" stroke-linecap="round">
+    <line x1="92" y1="800" x2="92" y2="560" stroke-width="5"/>
+    <line x1="92" y1="700" x2="60" y2="640" stroke-width="3.5"/>
+    <line x1="92" y1="660" x2="118" y2="610" stroke-width="3"/>
+    <line x1="92" y1="560" x2="50" y2="480" stroke-width="3"/>
+    <line x1="92" y1="560" x2="130" y2="490" stroke-width="3"/>
+    <line x1="92" y1="580" x2="20" y2="520" stroke-width="2.5"/>
+    <line x1="50" y1="480" x2="20" y2="420" stroke-width="2"/>
+    <line x1="50" y1="480" x2="65" y2="415" stroke-width="2"/>
+    <line x1="20" y1="420" x2="5"  y2="370" stroke-width="1.5"/>
+    <line x1="20" y1="420" x2="30" y2="365" stroke-width="1.5"/>
+    <line x1="65" y1="415" x2="55" y2="365" stroke-width="1.5"/>
+    <line x1="65" y1="415" x2="82" y2="360" stroke-width="1.5"/>
+    <line x1="130" y1="490" x2="155" y2="425" stroke-width="2"/>
+    <line x1="130" y1="490" x2="108" y2="430" stroke-width="2"/>
+    <line x1="155" y1="425" x2="170" y2="375" stroke-width="1.5"/>
+    <line x1="155" y1="425" x2="142" y2="372" stroke-width="1.5"/>
+    <line x1="5"   y1="370" x2="-5"  y2="335" stroke-width="1"/>
+    <line x1="30"  y1="365" x2="22"  y2="328" stroke-width="1"/>
+    <line x1="82"  y1="360" x2="75"  y2="322" stroke-width="1"/>
+    <line x1="170" y1="375" x2="182" y2="335" stroke-width="1"/>
+    <line x1="142" y1="372" x2="136" y2="330" stroke-width="1"/>
+  </g>
+
+  <!-- right tree -->
+  <g opacity="0.2" fill="none" stroke="#1a2a1a" stroke-linecap="round">
+    <line x1="908" y1="800" x2="908" y2="555" stroke-width="5"/>
+    <line x1="908" y1="700" x2="878" y2="635" stroke-width="3.5"/>
+    <line x1="908" y1="655" x2="938" y2="605" stroke-width="3"/>
+    <line x1="908" y1="555" x2="868" y2="472" stroke-width="3"/>
+    <line x1="908" y1="555" x2="948" y2="480" stroke-width="3"/>
+    <line x1="908" y1="575" x2="975" y2="512" stroke-width="2.5"/>
+    <line x1="868" y1="472" x2="838" y2="410" stroke-width="2"/>
+    <line x1="868" y1="472" x2="882" y2="408" stroke-width="2"/>
+    <line x1="838" y1="410" x2="822" y2="360" stroke-width="1.5"/>
+    <line x1="838" y1="410" x2="848" y2="355" stroke-width="1.5"/>
+    <line x1="882" y1="408" x2="872" y2="358" stroke-width="1.5"/>
+    <line x1="882" y1="408" x2="898" y2="352" stroke-width="1.5"/>
+    <line x1="948" y1="480" x2="972" y2="415" stroke-width="2"/>
+    <line x1="948" y1="480" x2="926" y2="422" stroke-width="2"/>
+    <line x1="972" y1="415" x2="988" y2="365" stroke-width="1.5"/>
+    <line x1="972" y1="415" x2="958" y2="362" stroke-width="1.5"/>
+    <line x1="822" y1="360" x2="812" y2="320" stroke-width="1"/>
+    <line x1="848" y1="355" x2="840" y2="315" stroke-width="1"/>
+    <line x1="898" y1="352" x2="892" y2="310" stroke-width="1"/>
+    <line x1="988" y1="365" x2="998" y2="325" stroke-width="1"/>
+    <line x1="958" y1="362" x2="952" y2="318" stroke-width="1"/>
+  </g>
+</svg>
+
+<div class="lime-bar lb1"></div>
+<div class="lime-bar lb2"></div>
+<div class="lime-bar lb3"></div>
+
+<div class="artist-float af-tl">AUXO.</div>
+<div class="artist-float af-br">KYOTE</div>
+
+<div class="timer-wrap">
+  <div class="dot-label">05 . 01 . 26</div>
+  <div class="units">
+    <div class="unit">
+      <div class="unit-num" id="d">00</div>
+      <div class="unit-label">days</div>
     </div>
-    <a class="music-editing-link" href="music_editing.html">Music Editing</a>
+    <div class="sep">:</div>
+    <div class="unit">
+      <div class="unit-num" id="h">00</div>
+      <div class="unit-label">hours</div>
+    </div>
+    <div class="sep">:</div>
+    <div class="unit">
+      <div class="unit-num" id="s">00</div>
+      <div class="unit-label">sec</div>
+    </div>
   </div>
+</div>
 
-  <div id="snow-container"></div>
+<div class="date-tag">may 1st</div>
 
-  <audio src="song.mp3" autoplay loop></audio>
+<!-- rock cursor SVG -->
+<svg id="cursor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- main rock body — irregular lumpy polygon -->
+  <polygon points="8,38 4,26 7,14 16,6 28,4 38,9 44,20 42,33 34,42 20,44 10,42" fill="#7a7068" />
+  <!-- darker facets for 3D feel -->
+  <polygon points="8,38 4,26 7,14 16,18 14,34" fill="#5c544c" opacity="0.7"/>
+  <polygon points="38,9 44,20 42,33 34,28 32,12" fill="#9a8e82" opacity="0.6"/>
+  <polygon points="16,6 28,4 32,12 20,16 16,18 7,14" fill="#b0a496" opacity="0.55"/>
+  <!-- specular highlight -->
+  <ellipse cx="19" cy="13" rx="5" ry="3" fill="white" opacity="0.18" transform="rotate(-20,19,13)"/>
+  <!-- crack lines -->
+  <polyline points="18,22 22,30 28,34" fill="none" stroke="#3e3830" stroke-width="1" opacity="0.5"/>
+  <polyline points="26,10 30,18 28,24" fill="none" stroke="#3e3830" stroke-width="0.8" opacity="0.4"/>
+  <!-- pebble texture dots -->
+  <circle cx="13" cy="30" r="1.2" fill="#4a4240" opacity="0.4"/>
+  <circle cx="35" cy="22" r="1" fill="#4a4240" opacity="0.35"/>
+  <circle cx="24" cy="38" r="1.3" fill="#4a4240" opacity="0.3"/>
+</svg>
 
-  <script>
-    let snowflakes = [];
+<script>
+  // ── rock cursor ──
+  const cursor = document.getElementById('cursor');
+  let cx = -100, cy = -100, angle = 0;
+  document.addEventListener('mousemove', e => {
+    cx = e.clientX; cy = e.clientY;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+  });
+  // gentle wobble
+  function wobble() {
+    angle += 0.4;
+    cursor.style.transform = `translate(-50%,-50%) rotate(${Math.sin(angle * 0.04) * 12}deg)`;
+    requestAnimationFrame(wobble);
+  }
+  wobble();
 
-    function setup() {
-      let canvas = createCanvas(window.innerWidth, window.innerHeight);
-      canvas.position(0, 0);
-      canvas.style('z-index', '1');
-      fill('red');
-      noStroke();
-    }
+  // ── globe wireframe on canvas ──
+  const canvas = document.getElementById('globe');
+  const ctx = canvas.getContext('2d');
 
-    function draw() {
-      let t = frameCount / 60;
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
 
-      for (let i = 0; i < random(5); i++) {
-        snowflakes.push(new snowflake());
-      }
+  const R = Math.min(window.innerWidth, window.innerHeight) * 0.52;
+  let rot = 0;
 
-      for (let flake of snowflakes) {
-        flake.update(t);
-        flake.display();
-      }
-    }
+  function project(lat, lon, tilt) {
+    // rotate lon by current spin, tilt globe slightly
+    const cosT = Math.cos(tilt), sinT = Math.sin(tilt);
+    const phi = (lat * Math.PI) / 180;
+    const lam = (lon * Math.PI) / 180 + rot;
+    let x = Math.cos(phi) * Math.cos(lam);
+    let y = Math.sin(phi);
+    let z = Math.cos(phi) * Math.sin(lam);
+    // apply tilt (rotate around x axis)
+    const y2 =  y * cosT - z * sinT;
+    const z2 =  y * sinT + z * cosT;
+    // only draw if facing us
+    return { x, y: y2, z: z2, visible: z2 > -0.05 };
+  }
 
-    function snowflake() {
-      this.posX = 0;
-      this.posY = random(-50, 0);
-      this.initialangle = random(0, 2 * PI);
-      this.size = random(2, 5);
-      this.radius = sqrt(random(pow(width / 2, 2)));
+  function drawGlobe() {
+    const W = canvas.width, H = canvas.height;
+    const cx = W / 2, cy = H / 2;
+    const r = Math.min(W, H) * 0.52;
+    const tilt = 0.35; // ~20° tilt
 
-      this.update = function(time) {
-        let w = 0.6;
-        let angle = w * time + this.initialangle;
-        this.posX = width / 2 + this.radius * sin(angle);
-        this.posY += pow(this.size, 0.5);
+    ctx.clearRect(0, 0, W, H);
 
-        if (this.posY > height) {
-          let index = snowflakes.indexOf(this);
-          snowflakes.splice(index, 1);
+    // latitudes
+    for (let lat = -80; lat <= 80; lat += 20) {
+      ctx.beginPath();
+      let first = true;
+      for (let lon = -180; lon <= 180; lon += 3) {
+        const p = project(lat, lon, tilt);
+        const sx = cx + p.x * r;
+        const sy = cy - p.y * r;
+        if (p.visible) {
+          if (first) { ctx.moveTo(sx, sy); first = false; }
+          else ctx.lineTo(sx, sy);
+        } else {
+          first = true;
         }
-      };
-
-      this.display = function() {
-        ellipse(this.posX, this.posY, this.size);
-      };
+      }
+      const alpha = lat === 0 ? 0.18 : 0.09;
+      ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+      ctx.lineWidth = lat === 0 ? 1.2 : 0.7;
+      ctx.stroke();
     }
-  </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+    // longitudes
+    for (let lon = -180; lon < 180; lon += 20) {
+      ctx.beginPath();
+      let first = true;
+      for (let lat = -90; lat <= 90; lat += 3) {
+        const p = project(lat, lon, tilt);
+        const sx = cx + p.x * r;
+        const sy = cy - p.y * r;
+        if (p.visible) {
+          if (first) { ctx.moveTo(sx, sy); first = false; }
+          else ctx.lineTo(sx, sy);
+        } else {
+          first = true;
+        }
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.lineWidth = 0.7;
+      ctx.stroke();
+    }
+
+    // outer circle glow
+    const grad = ctx.createRadialGradient(cx, cy, r * 0.7, cx, cy, r * 1.05);
+    grad.addColorStop(0, 'rgba(180,220,255,0.0)');
+    grad.addColorStop(0.85, 'rgba(180,220,255,0.07)');
+    grad.addColorStop(1, 'rgba(120,180,240,0.18)');
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(200,230,255,0.22)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    rot += 0.003;
+    requestAnimationFrame(drawGlobe);
+  }
+  drawGlobe();
+
+  // ── countdown to May 1, 2026 ──
+  const dEl = document.getElementById('d');
+  const hEl = document.getElementById('h');
+  const sEl = document.getElementById('s');
+  const TARGET = new Date(2026, 4, 1, 0, 0, 0, 0); // May = month 4
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
+    const diff = Math.max(0, Math.floor((TARGET - Date.now()) / 1000));
+    dEl.textContent = pad(Math.floor(diff / 86400));
+    hEl.textContent = pad(Math.floor((diff % 86400) / 3600));
+    sEl.textContent = pad(diff % 60);
+    setTimeout(tick, 1000 - (Date.now() % 1000));
+  }
+  tick();
+</script>
 </body>
 </html>
